@@ -102,7 +102,7 @@ header {
     width: 100%;
     top: 0;
     left: 0;
-    background-color: #33414a;
+    background-color: #9E9E9E;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     /* Force Hardware Acceleration */
@@ -299,7 +299,7 @@ header::before {
     overflow: auto;
     -webkit-overflow-scrolling: touch;
     visibility: hidden;
-    background: #616161;
+    background: #9E9E9E;
     -webkit-transition: visibility 0s 0.3s;
     -moz-transition: visibility 0s 0.3s;
     transition: visibility 0s 0.3s;
@@ -374,8 +374,8 @@ header::before {
         opacity: .6;
     }
 
-    .title a:hover, .cd-main-nav li a:hover {
-        color: #03a9f4;
+    .title a:hover, .cd-main-nav li a:not(.active):hover {
+        color: #B3E5FC;
     }
 
     .cd-main-nav .go-back {
