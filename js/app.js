@@ -15,30 +15,18 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
                 templateUrl: baseThemeURI + '/partials/index.html',
                 controller: 'GetIndex'
             })
-            .when('/about', {
-                templateUrl: baseThemeURI + '/partials/page.html',
-                controller: 'GetPage'
-            })
-            .when('/services', {
-                templateUrl: baseThemeURI + '/partials/page.html',
-                controller: 'GetPage'
-            })
-            .when('/blog', {
+            .when('/blog/', {
                 templateUrl: baseThemeURI + '/partials/blog.html',
                 controller: 'BlogList'
             })
-            .when('/blog/page/:page', {
-                templateUrl: baseThemeURI + '/partials/blog.html',
-                controller: 'BlogList'
-            })
-            .when('/blog/:category', {
-                templateUrl: baseThemeURI + '/partials/blog.html',
-                controller: 'BlogList'
-            })
-            .when('/blog/:category/:post', {
+            .when('/blog/:post/', {
                 templateUrl: baseThemeURI + '/partials/post.html',
                 controller: 'BlogPost'
-            });
+            })
+            .when('/:page/', {
+                templateUrl: baseThemeURI + '/partials/page.html',
+                controller: 'GetPage'
+            })
 
         /**
          *	Remove # from the URL with $locationProvider
@@ -54,7 +42,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
 
     .controller('MenuController', function($scope, $location){
         $scope.isActive = function(route) {
-            return route === $location.url();
+            return route === $location.path();
         }
     })
 

@@ -27,6 +27,14 @@ jQuery(document).ready(function($){
         $('.cd-main-nav').toggleClass('moves-out');
     });
 
+    $('.cd-main-nav li a').on('click', function(event) {
+        if($('header').hasClass('nav-is-visible')) $('.moves-out').removeClass('moves-out');
+
+        $('header').toggleClass('nav-is-visible');
+        $('.cd-main-nav').toggleClass('nav-is-visible');
+        $('.cd-main-content').toggleClass('nav-is-visible');
+    });
+
     function moveNavigation(){
         var navigation = $('.cd-main-nav-wrapper');
         var screenSize = checkWindowWidth();
@@ -44,19 +52,5 @@ jQuery(document).ready(function($){
     function checkWindowWidth() {
         var mq = window.getComputedStyle(document.querySelector('header'), '::before').getPropertyValue('content').replace(/"/g, '').replace(/'/g, "");
         return ( mq == 'mobile' ) ? false : true;
-    }
-
-    //clipped image - blur effect
-    set_clip_property();
-    $(window).on('resize', function(){
-        set_clip_property();
-    });
-
-    function set_clip_property() {
-        var $header_height = $('.cd-header').height(),
-            $window_height = $(window).height(),
-            $header_top = $window_height - $header_height,
-            $window_width = $(window).width();
-        $('.cd-blurred-bg').css('clip', 'rect('+$header_top+'px, '+$window_width+'px, '+$window_height+'px, 0px)');
     }
 });
