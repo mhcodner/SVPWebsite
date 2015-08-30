@@ -13,26 +13,16 @@ jQuery(document).ready(function($){
         $('header').toggleClass('nav-is-visible');
         $('.cd-main-nav').toggleClass('nav-is-visible');
         $('.cd-main-content').toggleClass('nav-is-visible');
+        $('footer').toggleClass('nav-is-visible');
     });
 
-    //mobile version - go back to main navigation
-    $('.go-back').on('click', function(event){
-        event.preventDefault();
-        $('.cd-main-nav').removeClass('moves-out');
-    });
-
-    //open sub-navigation
-    $('.cd-subnav-trigger').on('click', function(event){
-        event.preventDefault();
-        $('.cd-main-nav').toggleClass('moves-out');
-    });
-
-    $('.cd-main-nav li a').on('click', function(event) {
+    $('.cd-main-nav li a').on('click', function() {
         if($('header').hasClass('nav-is-visible')) $('.moves-out').removeClass('moves-out');
 
         $('header').toggleClass('nav-is-visible');
         $('.cd-main-nav').toggleClass('nav-is-visible');
         $('.cd-main-content').toggleClass('nav-is-visible');
+        $('footer').toggleClass('nav-is-visible');
     });
 
     function moveNavigation(){
@@ -51,6 +41,6 @@ jQuery(document).ready(function($){
 
     function checkWindowWidth() {
         var mq = window.getComputedStyle(document.querySelector('header'), '::before').getPropertyValue('content').replace(/"/g, '').replace(/'/g, "");
-        return ( mq == 'mobile' ) ? false : true;
+        return mq != 'mobile';
     }
 });
