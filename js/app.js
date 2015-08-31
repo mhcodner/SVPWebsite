@@ -59,7 +59,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
          *	Perform a GET request on the API and pass the slug to it using $location.url()
          *	On success, pass the data to the view through $scope.page
          */
-        $http.get('/wordpress/api/get_page/?slug=' + $location.url())
+        $http.get('/api/get_page/?slug=' + $location.url())
             .success(function(data, status, headers, config){
                 $scope.page = data.page;
 
@@ -94,7 +94,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
             /**
              *  Get posts from a specific category by passing in the slug
              */
-            var url = $http.get('/wordpress/api/get_category_posts/?slug=' + $routeParams.category);
+            var url = $http.get('/api/get_category_posts/?slug=' + $routeParams.category);
         }
         else
         {
@@ -103,14 +103,14 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
                 /**
                  *  If a page parameter has been passed, send this to the API
                  */
-                var url = $http.get('/wordpress/api/get_posts/?page=' + $routeParams.page);
+                var url = $http.get('/api/get_posts/?page=' + $routeParams.page);
             }
             else
             {
                 /**
                  *  If no parameter supplied, just get all posts
                  */
-                var url = $http.get('/wordpress/api/get_posts');
+                var url = $http.get('/api/get_posts');
 
                 // Set a default paging value
                 $scope.page = 1;
@@ -156,7 +156,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
          *  Call the get_post method from the API and pass to it the
          *  value of $routeParams.post, which is actually the post slug
          */
-        $http.get('/wordpress/api/get_post/?slug=' + $routeParams.post)
+        $http.get('/api/get_post/?slug=' + $routeParams.post)
             .success(function(data, status, headers, config){
                 $scope.post = data;
                 $scope.comments = data.post.comments;
@@ -176,7 +176,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
          *  This method just gets the categories available to us and
          *  makes them available through CategoryList controller
          */
-        $http.get('/wordpress/api/get_category_index')
+        $http.get('/api/get_category_index')
             .success(function(data, status, headers, config){
                 $scope.categories = data.categories;
             })

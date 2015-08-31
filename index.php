@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?> ng-app="MyApp">
 <head>
-    <base href="/wordpress/">
+    <base href="/">
     <meta charset="utf-8">
     <title ng-bind="title">Sam Venn Photography</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,12 +17,12 @@
 
         <div class="title-container">
             <div class="cd-logo">
-                <a href="/wordpress/">
+                <a href="/">
                     <img src="<?php echo get_template_directory_uri() ?>/img/SVP_Logo.png" alt="Logo">
                 </a>
             </div>
             <div class="title">
-                <a href="/wordpress/">
+                <a href="/">
                     Sam Venn Photography
                 </a>
             </div>
@@ -30,10 +30,10 @@
 
         <nav class="cd-main-nav-wrapper">
             <ul ng-controller="MenuController" class="cd-main-nav">
-                <li><a ng-class="{ active:isActive('/') }" href="/wordpress">Home</a></li>
-                <li><a ng-class="{ active:isActive('/about/') }" href="/wordpress/about">About</a></li>
-                <li><a ng-class="{ active:isActive('/contact/') }" href="/wordpress/contact">Contact</a></li>
-                <li><a ng-class="{ active:isActive('/gallery/') }" href="/wordpress/gallery">Gallery</a></li>
+                <li><a ng-class="{ active:isActive('/') }" href="/">Home</a></li>
+                <li><a ng-class="{ active:isActive('/about/') }" href="/about">About</a></li>
+                <li><a ng-class="{ active:isActive('/contact/') }" href="/contact">Contact</a></li>
+                <li><a ng-class="{ active:isActive('/gallery/') }" href="/gallery">Gallery</a></li>
             </ul>
         </nav>
 
