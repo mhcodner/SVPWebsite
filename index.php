@@ -1,9 +1,17 @@
 <!DOCTYPE html>
-<html <?php language_attributes(); ?> ng-app="MyApp">
+<html <?php language_attributes(); ?> ng-app="MyApp"
+                                      xmlns="http://www.w3.org/1999/xhtml"
+                                      xmlns:og="http://ogp.me/ns#"
+                                      xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
     <base href="/">
     <meta charset="utf-8">
     <title ng-bind="title">Sam Venn Photography</title>
+    <meta property="og:title" content="Sam Venn Photography"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:image" content="http://128.199.107.48/wp-content/themes/SVPWebsite/img/SVP_Logo.png"/>
+    <meta property="og:site_name" content="Sam Venn Photography"/>
+    <meta property="og:description" content="Photographer from Sydney"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='//fonts.googleapis.com/css?family=Raleway:200:400' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
