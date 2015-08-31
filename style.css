@@ -24,6 +24,13 @@ body {
     font-family: 'Raleway', sans-serif;
 }
 
+.container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
 .view-animate {
     -webkit-transition: all 0.5s ease-out;
 }

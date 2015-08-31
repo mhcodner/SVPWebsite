@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html <?php language_attributes(); ?> ng-app="MyApp" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
+<html <?php language_attributes(); ?> ng-app="MyApp" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#"
+                                      xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
     <base href="/">
     <meta charset="utf-8">
@@ -16,54 +17,53 @@
 </head>
 <body>
 
-<div class="container">
 
-    <header>
+<header>
 
-        <div class="title-container">
-            <div class="cd-logo">
-                <a href="/">
-                    <img src="<?php echo get_template_directory_uri() ?>/img/SVP_Logo.png" alt="Logo">
-                </a>
-            </div>
-            <div class="title">
-                <a href="/">
-                    Sam Venn Photography
-                </a>
-            </div>
+    <div class="title-container">
+        <div class="cd-logo">
+            <a href="/">
+                <img src="<?php echo get_template_directory_uri() ?>/img/SVP_Logo.png" alt="Logo">
+            </a>
         </div>
-
-        <nav class="cd-main-nav-wrapper">
-            <ul ng-controller="MenuController" class="cd-main-nav">
-                <li><a ng-class="{ active:isActive('/') }" href="/">Home</a></li>
-                <li><a ng-class="{ active:isActive('/about/') }" href="/about">About</a></li>
-                <li><a ng-class="{ active:isActive('/contact/') }" href="/contact">Contact</a></li>
-                <li><a ng-class="{ active:isActive('/gallery/') }" href="/gallery">Gallery</a></li>
-            </ul>
-        </nav>
-
-        <a href="#" class="cd-nav-trigger">Menu<span></span></a>
-
-    </header>
-
-    <main class="cd-main-content">
-        <!-- main content here -->
-        <div class="view-animate-container">
-
-            <div ng-view class="view-animate" ng-cloak></div>
-
+        <div class="title">
+            <a href="/">
+                Sam Venn Photography
+            </a>
         </div>
-    </main>
+    </div>
 
-    <footer>
-        &copy; <?php echo date("Y"); ?> Sam Venn Photography
-        <div class="u-pull-right">
-            <a href="https://www.facebook.com/pages/Sam-Venn-Photography/311302692214440"><i class="fa fa-2x fa-facebook-square"></i></a>
-            <a href="https://instagram.com/samvennphotography/"><i class="fa fa-2x fa-instagram"></i></a>
-        </div>
-    </footer>
+    <nav class="cd-main-nav-wrapper">
+        <ul ng-controller="MenuController" class="cd-main-nav">
+            <li><a ng-class="{ active:isActive('/') }" href="/">Home</a></li>
+            <li><a ng-class="{ active:isActive('/about/') }" href="/about">About</a></li>
+            <li><a ng-class="{ active:isActive('/contact/') }" href="/contact">Contact</a></li>
+            <li><a ng-class="{ active:isActive('/gallery/') }" href="/gallery">Gallery</a></li>
+        </ul>
+    </nav>
 
-</div>
+    <a href="#" class="cd-nav-trigger">Menu<span></span></a>
+
+</header>
+
+<main class="cd-main-content">
+    <!-- main content here -->
+    <div class="view-animate-container">
+
+        <div ng-view class="view-animate" ng-cloak></div>
+
+    </div>
+</main>
+
+<footer class="container">
+    &copy; <?php echo date("Y"); ?> Sam Venn Photography
+    <div class="u-pull-right">
+        <a href="https://www.facebook.com/pages/Sam-Venn-Photography/311302692214440"><i
+                class="fa fa-2x fa-facebook-square"></i></a>
+        <a href="https://instagram.com/samvennphotography/"><i class="fa fa-2x fa-instagram"></i></a>
+    </div>
+</footer>
+
 
 <?php wp_footer(); ?>
 </body>
