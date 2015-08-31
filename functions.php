@@ -82,8 +82,3 @@ function samvennphoto_scripts() {
 	);
 }
 add_action( 'wp_enqueue_scripts', 'samvennphoto_scripts' );
-
-/**
- * Customizer additions.
- */
-require get_template_directory() . '/inc/customizer.php';
