@@ -24,9 +24,9 @@ function samvennphoto_setup() {
 	add_theme_support( 'post-thumbnails' );
 
 	// This theme uses wp_nav_menu() in one location.
-	register_nav_menus( array(
+	/*register_nav_menus( array(
 		'primary' => esc_html__( 'Primary Menu', 'samvennphoto' ),
-	) );
+	) );*/
 }
 endif; // samvennphoto_setup
 add_action( 'after_setup_theme', 'samvennphoto_setup' );
