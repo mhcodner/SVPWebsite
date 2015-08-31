@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<html <?php language_attributes(); ?> ng-app="MyApp"
-                                      xmlns="http://www.w3.org/1999/xhtml"
-                                      xmlns:og="http://ogp.me/ns#"
-                                      xmlns:fb="https://www.facebook.com/2008/fbml">
+<html <?php language_attributes(); ?> ng-app="MyApp" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
     <base href="/">
     <meta charset="utf-8">

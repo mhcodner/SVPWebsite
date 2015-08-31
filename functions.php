@@ -23,12 +23,25 @@ function samvennphoto_setup() {
 	 */
 	add_theme_support( 'post-thumbnails' );
 
-	// This theme uses wp_nav_menu() in one location.
-	register_nav_menus( array(
-		'primary' => esc_html__( 'Primary Menu', 'samvennphoto' ),
-	) );
+	remove_action('wp_head', 'wp_generator');
+	remove_action('wp_head', 'wlwmanifest_link');
+	remove_action('wp_head', 'rsd_link');
+	remove_action('wp_head', 'wp_shortlink_wp_head');
+	remove_action('set_comment_cookies', 'wp_set_comment_cookies');
+
+	remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10);
+
+	add_filter('the_generator', '__return_false');
+	add_filter('show_admin_bar','__return_false');
+	add_filter('embed_oembed_html', 'oembed_html', 9999, 4);
+
+	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+	remove_action( 'wp_print_styles', 'print_emoji_styles' );
 }
 endif; // samvennphoto_setup
+function oembed_html($html, $url, $attr, $post_id) {
+	return '<div class="video-wrapper">' . $html . '</div>';
+}
 add_action( 'after_setup_theme', 'samvennphoto_setup' );
 
 /**
