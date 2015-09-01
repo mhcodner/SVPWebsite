@@ -72,6 +72,7 @@ function samvennphoto_scripts() {
 	wp_enqueue_script( 'samvennphoto-jquery', get_template_directory_uri() . '/js/vendor/jquery-2.1.4.min.js', array( ), '', true );
 
 	wp_enqueue_script( 'samvennphoto-js', get_template_directory_uri() . '/js/app.js', array(), '', true );
+	wp_enqueue_script( 'samvennphoto-masonry', get_template_directory_uri() . '/js/masonry.min.js', array(), '', true );
 	wp_enqueue_script( 'samvennphoto-main', get_template_directory_uri() . '/js/main.js', array(), '', true );
 
 	// Variables for app script
