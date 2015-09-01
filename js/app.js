@@ -86,13 +86,9 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
             $scope.posts = data;
         });
 
-        $scope.$on('$viewContentLoaded', function () {
-            console.log('$viewContentLoaded');
-            $(window).load(function () {
-                var images = $('.masonry-image');
-                images.height(images.width() * 0.75);
-                console.log('window loaded');
-            });
+        $scope.$on('$viewContentLoaded', function ()
+        {
+            $('.masonry-image').height($('.masonry-image').width() * 0.75);
         });
     })
 
