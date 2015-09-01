@@ -75,10 +75,10 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
     .controller('GetIndex', ['$scope', '$rootScope', function($scope, $rootScope){
         $rootScope.title = "Sam Venn Photography";
 
-        $scope.load = function() {
+        $scope.$on('$viewContentLoaded', function ()
+        {
             $('.masonry-image').height($('.masonry-image').width() * 0.75);
-        };
-        $scope.load();
+        });
     }])
 
     .controller('BlogList', function($scope, $rootScope, $http, $routeParams){
