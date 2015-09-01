@@ -2,8 +2,8 @@ jQuery(document).ready(function ($) {
     //move nav element position according to window width
     moveNavigation();
     $(window).on('resize', function () {
-        var images = $('.masonry-image');
-        images.height(images.width() * 0.75);
+        /*var images = $('.masonry-image');
+        images.height(images.width() * 0.75);*/
         (!window.requestAnimationFrame) ? setTimeout(moveNavigation, 300) : window.requestAnimationFrame(moveNavigation);
     });
 

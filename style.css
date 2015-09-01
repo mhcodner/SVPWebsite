@@ -25,9 +25,10 @@ body {
 }
 
 .masonry-image {
-    margin: 3px;
+    margin: 1%;
     float: left;
-    width: calc(100% - 6px);
+    width: 100%;
+    height: 68vw;
     overflow: hidden;
 }
 
@@ -43,19 +44,25 @@ body {
 
 @media (min-width: 550px) {
     .masonry-image {
-        width: calc(50% - 6px);
+        margin: 0.5%;
+        width: 49%;
+        height: 37vw;
     }
 }
 
 @media (min-width: 750px) {
     .masonry-image {
-        width: calc(33% - 6px);
+        width: 32%;
+        height: 24vw;
+        margin: 0.3%;
     }
 }
 
 @media (min-width: 1024px) {
     .masonry-image {
-        width: calc(25% - 6px);
+        width: 24.4%;
+        height: 18vw;
+        margin: 0.15%;
     }
 }
 

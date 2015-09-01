@@ -85,12 +85,6 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
         $http.get('/api/get_posts/').success(function (data) {
             $scope.posts = data;
         });
-
-        $scope.$on('$viewContentLoaded', function ()
-        {
-            var images = $('.masonry-image');
-            images.height(images.width() * 0.75);
-        });
     })
 
     .controller('GalleryList', function ($scope, $rootScope, $http, $routeParams) {
