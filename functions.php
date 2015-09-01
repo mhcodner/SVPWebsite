@@ -64,15 +64,14 @@ function samvennphoto_scripts() {
 	wp_enqueue_style( 'samvennphoto-normalize', get_template_directory_uri() . '/css/normalize.css' );
 	wp_enqueue_style( 'samvennphoto-skeleton', get_template_directory_uri() . '/css/skeleton.css' );
 
+	wp_enqueue_script( 'samvennphoto-jquery', get_template_directory_uri() . '/js/vendor/jquery-2.1.4.min.js', array( ), '', true );
 	wp_enqueue_script( 'samvennphoto-angular', get_template_directory_uri() . '/js/vendor/angular.min.js', array( ), '', true );
 	wp_enqueue_script( 'samvennphoto-angular-sanitize', get_template_directory_uri() . '/js/vendor/angular-sanitize.min.js', array( ), '', true );
 	wp_enqueue_script( 'samvennphoto-angular-route', get_template_directory_uri() . '/js/vendor/angular-route.min.js', array( ), '', true );
 	wp_enqueue_script( 'samvennphoto-angular-animate', get_template_directory_uri() . '/js/vendor/angular-animate.min.js', array( ), '', true );
 	wp_enqueue_script( 'samvennphoto-angular-resource', get_template_directory_uri() . '/js/vendor/angular-resource.min.js', array( ), '', true );
-	wp_enqueue_script( 'samvennphoto-jquery', get_template_directory_uri() . '/js/vendor/jquery-2.1.4.min.js', array( ), '', true );
 
 	wp_enqueue_script( 'samvennphoto-js', get_template_directory_uri() . '/js/app.js', array(), '', true );
-	wp_enqueue_script( 'samvennphoto-masonry', get_template_directory_uri() . '/js/masonry.min.js', array(), '', true );
 	wp_enqueue_script( 'samvennphoto-main', get_template_directory_uri() . '/js/main.js', array(), '', true );
 
 	// Variables for app script

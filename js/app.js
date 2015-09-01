@@ -72,15 +72,14 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
 
     })
 
-    .controller('GetIndex', function($scope, $rootScope, $http, $location){
-
-        /**
-         *	Perform a GET request on the API and pass the slug to it using $location.url()
-         *	On success, pass the data to the view through $scope.page
-         */
+    .controller('GetIndex', ['$scope', '$rootScope', function($scope, $rootScope){
         $rootScope.title = "Sam Venn Photography";
 
-    })
+        $scope.load = function() {
+            $('.masonry-image').height($('.masonry-image').width() * 0.75);
+        };
+        $scope.load();
+    }])
 
     .controller('BlogList', function($scope, $rootScope, $http, $routeParams){
 

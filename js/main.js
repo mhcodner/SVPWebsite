@@ -2,6 +2,7 @@ jQuery(document).ready(function ($) {
     //move nav element position according to window width
     moveNavigation();
     $(window).on('resize', function () {
+        $('.masonry-image').height($('.masonry-image').width() * 0.75);
         (!window.requestAnimationFrame) ? setTimeout(moveNavigation, 300) : window.requestAnimationFrame(moveNavigation);
     });
 
@@ -42,9 +43,4 @@ jQuery(document).ready(function ($) {
         var mq = window.getComputedStyle(document.querySelector('header'), '::before').getPropertyValue('content').replace(/"/g, '').replace(/'/g, "");
         return mq != 'mobile';
     }
-
-    $('#container').masonry({
-        itemSelector: '.masonry-image',
-        percentPosition: true
-    });
 });
