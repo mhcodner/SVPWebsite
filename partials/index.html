@@ -1,40 +1,7 @@
 <div class="container-fluid">
     <div class="row">
-        <a class="masonry-image" href="https://placehold.it/1280x720">
-            <img src="https://placehold.it/400x300" alt="Placeholder"/>
-        </a>
-        <a class="masonry-image" href="https://placehold.it/1280x720">
-            <img src="https://placehold.it/400x300" alt="Placeholder"/>
-        </a>
-        <a class="masonry-image" href="https://placehold.it/1280x720">
-            <img src="https://placehold.it/400x300" alt="Placeholder"/>
-        </a>
-        <a class="masonry-image" href="https://placehold.it/1280x720">
-            <img src="https://placehold.it/400x300" alt="Placeholder"/>
-        </a>
-        <a class="masonry-image" href="https://placehold.it/1280x720">
-            <img src="https://placehold.it/400x300" alt="Placeholder"/>
-        </a>
-        <a class="masonry-image" href="https://placehold.it/1280x720">
-            <img src="https://placehold.it/400x300" alt="Placeholder"/>
-        </a>
-        <a class="masonry-image" href="https://placehold.it/1280x720">
-            <img src="https://placehold.it/400x300" alt="Placeholder"/>
-        </a>
-        <a class="masonry-image" href="https://placehold.it/1280x720">
-            <img src="https://placehold.it/400x300" alt="Placeholder"/>
-        </a>
-        <a class="masonry-image" href="https://placehold.it/1280x720">
-            <img src="https://placehold.it/400x300" alt="Placeholder"/>
-        </a>
-        <a class="masonry-image" href="https://placehold.it/1280x720">
-            <img src="https://placehold.it/400x300" alt="Placeholder"/>
-        </a>
-        <a class="masonry-image" href="https://placehold.it/1280x720">
-            <img src="https://placehold.it/400x300" alt="Placeholder"/>
-        </a>
-        <a class="masonry-image" href="https://placehold.it/1280x720">
-            <img src="https://placehold.it/400x300" alt="Placeholder"/>
+        <a ng-repeat="post in posts.posts" class="masonry-image" href="/gallery/{{post.slug}}">
+            <img ng-src="{{post.thumbnail_images.thumbnail.url}}" alt="Placeholder"/>
         </a>
     </div>
 </div>

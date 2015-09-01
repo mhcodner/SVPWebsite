@@ -1,0 +1,15 @@
+<div class="container">
+	<div ng-controller="CategoryList">
+		<h3>Categories</h3>
+		<ul>
+			<li ng-repeat="category in categories"><a href="/gallery/category/{{ category.slug }}">{{ category.title }}</a></li>
+		</ul>
+	</div>
+
+	<hr />
+
+	<div ng-repeat="post in posts">
+		<h4><a href="/gallery/{{ post.slug }}">{{ post.title }}</a> - {{ post.categories[0].title }}</h4>
+		<div ng-bind-html="post.excerpt"></div>
+	</div>
+</div>

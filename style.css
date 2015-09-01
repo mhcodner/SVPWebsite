@@ -457,10 +457,6 @@ header::before {
         background-color: #a6a6a6;
     }
 
-    .cd-main-nav .go-back {
-        display: none;
-    }
-
     .cd-main-nav li ul {
         height: 80px;
         background-color: #7e4d7e;
@@ -546,10 +542,6 @@ header::before {
 
 .no-js .cd-main-nav li:last-child {
     display: block;
-}
-
-.no-js .cd-main-nav .go-back {
-    display: none;
 }
 
 .no-js .cd-main-nav li ul {

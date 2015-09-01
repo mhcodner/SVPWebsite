@@ -2,7 +2,8 @@ jQuery(document).ready(function ($) {
     //move nav element position according to window width
     moveNavigation();
     $(window).on('resize', function () {
-        $('.masonry-image').height($('.masonry-image').width() * 0.75);
+        var images = $('.masonry-image');
+        images.height(images.width() * 0.75);
         (!window.requestAnimationFrame) ? setTimeout(moveNavigation, 300) : window.requestAnimationFrame(moveNavigation);
     });
 
@@ -17,9 +18,10 @@ jQuery(document).ready(function ($) {
     });
 
     function toggleCssClass() {
-        if ($('header').hasClass('nav-is-visible')) $('.moves-out').removeClass('moves-out');
+        var header = $('header');
+        if (header.hasClass('nav-is-visible')) $('.moves-out').removeClass('moves-out');
 
-        $('header').toggleClass('nav-is-visible');
+        header.toggleClass('nav-is-visible');
         $('.cd-main-nav').toggleClass('nav-is-visible');
         $('.cd-main-content').toggleClass('nav-is-visible');
         $('footer').toggleClass('nav-is-visible');
