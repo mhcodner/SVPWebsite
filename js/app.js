@@ -1,17 +1,18 @@
-Array.prototype.contains = function(v) {
-    for(var i = 0; i < this.length - 1; i++) {
-        if(this[i] === v) return true;
+// check if an element exists in array using a comparer function
+// comparer : function(currentElement)
+Array.prototype.inArray = function(comparer) {
+    for(var i=0; i < this.length; i++) {
+        if(comparer(this[i])) return true;
     }
     return false;
 };
-Array.prototype.unique = function() {
-    var arr = [];
-    for(var i = 0; i < this.length - 1; i++) {
-        if(!arr.contains(this[i])) {
-            arr.push(this[i]);
-        }
+
+// adds an element to the array if it does not already exist using a comparer
+// function
+Array.prototype.pushIfNotExist = function(element, comparer) {
+    if (!this.inArray(comparer)) {
+        this.push(element);
     }
-    return arr;
 };
 var baseThemeURI = '/wp-content/themes/SVPWebsite';
 var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSanitize', 'angular-loading-bar'])
@@ -83,7 +84,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
          *    Perform a GET request on the API and pass the slug to it using $location.url()
          *    On success, pass the data to the view through $scope.page
          */
-        $http.get('/api/get_page/?slug=' + $location.url(), { cache: true})
+        $http.get('/api/get_page/?slug=' + $location.url(), {cache: true})
             .success(function (data) {
                 $scope.page = data.page;
 
@@ -99,7 +100,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
     .controller('GetIndex', function ($scope, $rootScope, $http) {
         $rootScope.title = "Sam Venn Photography";
 
-        $http.get('/api/get_category_posts/?slug=featured', { cache: true}).success(function (data) {
+        $http.get('/api/get_category_posts/?slug=featured', {cache: true}).success(function (data) {
             $scope.posts = data;
         });
     })
@@ -177,7 +178,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
         if ($location.search().preview === 'true') {
             url += '&preview=true&preview_id=' + $location.search().preview_id + '&preview_nonce=' + $location.search().preview_nonce;
         }
-        $http.get(url, { cache: true})
+        $http.get(url, {cache: true})
             .success(function (data) {
                 $scope.post = data;
 
@@ -192,7 +193,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
 
     .controller('CategoryList', function ($scope, $http, $location) {
 
-        $http.get('/api/get_category_index/', { cache: true})
+        $http.get('/api/get_category_index/', {cache: true})
             .success(function (data) {
                 var featuredCat;
                 for (var i = 0, iLen = data.categories.length; i < iLen; i++) {
@@ -201,16 +202,16 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
                     }
                 }
                 var featuredCatId = featuredCat.id;
-                $http.get('/api/get_posts/?cat=-' + featuredCatId, { cache: true})
+                $http.get('/api/get_posts/?cat=-' + featuredCatId, {cache: true})
                     .success(function (data) {
                         var categoriesList = [];
                         data.posts.forEach(function (post) {
                             post.categories.forEach(function (category) {
-                                categoriesList.push(category);
+                                categoriesList.pushIfNotExist(category, function(e) {
+                                    return e.slug === category.slug;
+                                });
                             });
                         });
-                        categoriesList = categoriesList.unique();
-                        console.table(categoriesList);
                         $scope.categories = categoriesList;
                     })
                     .error(function () {
