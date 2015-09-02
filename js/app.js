@@ -152,13 +152,18 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
 
     })
 
-    .controller('BlogPost', function ($scope, $rootScope, $http, $routeParams) {
+    .controller('BlogPost', function ($scope, $rootScope, $http, $routeParams, $location) {
 
         /**
          *  Call the get_post method from the API and pass to it the
          *  value of $routeParams.post, which is actually the post slug
          */
-        $http.get('/api/get_post/?slug=' + $routeParams.post)
+        var url = '/api/get_post/?slug=' + $routeParams.post;
+        if ($location.search().preview === 'true')
+        {
+            url += '&preview=true&preview_id=' + $location.search().preview_id + '&preview_nonce=' + $location.search().preview_nonce;
+        }
+        $http.get(url)
             .success(function (data) {
                 $scope.post = data;
 
