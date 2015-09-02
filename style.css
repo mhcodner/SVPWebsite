@@ -24,6 +24,30 @@ body {
     font-family: 'Raleway', sans-serif;
 }
 
+.button.primary {
+    color: #FFFFFF;
+    background-color: #9E9E9E;
+}
+
+ul.category-list {
+    list-style: none;
+    border-bottom: 1px solid #E1E1E1;
+}
+
+ul.category-list li {
+    padding: 5px;
+    display: inline;
+}
+
+.page-title {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #E1E1E1;
+}
+
+.post-content {
+    padding-top: 50px;
+}
+
 .masonry-image {
     margin: 1%;
     float: left;

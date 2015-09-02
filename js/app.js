@@ -93,6 +93,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
          *  Get posts from a specific category by passing in the slug
          */
         var url;
+        $rootScope.title = 'Gallery';
         /**
          *  Get the parameter passed into the controller (if it exists)
          *  and then construct the GET URL. If parameter exists, the user
@@ -119,7 +120,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
             $scope.next = 2;
 
             // Inject the title into the rootScope
-            $rootScope.title = 'Blog';
+            //$rootScope.title = 'Gallery';
         }
         url
             .success(function (data) {
@@ -168,7 +169,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
 
     })
 
-    .controller('CategoryList', function ($scope, $http) {
+    .controller('CategoryList', function ($scope, $http, $location) {
 
         /**
          *  This method just gets the categories available to us and
@@ -180,6 +181,13 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
             })
             .error(function () {
                 window.alert("We have been unable to access the feed :-(");
-            })
+            });
+
+        $scope.isCurrent = function (route) {
+            var paths = $location.path().split('/');
+            console.log(route + " " + paths[paths.length - 2]);
+            console.log(route === paths[paths.length - 2]);
+            return route === paths[paths.length - 2];
+        }
 
     });
