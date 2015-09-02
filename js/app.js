@@ -1,3 +1,18 @@
+Array.prototype.contains = function(v) {
+    for(var i = 0; i < this.length - 1; i++) {
+        if(this[i] === v) return true;
+    }
+    return false;
+};
+Array.prototype.unique = function() {
+    var arr = [];
+    for(var i = 0; i < this.length - 1; i++) {
+        if(!arr.contains(this[i])) {
+            arr.push(this[i]);
+        }
+    }
+    return arr;
+};
 var baseThemeURI = '/wp-content/themes/SVPWebsite';
 var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSanitize', 'angular-loading-bar'])
 /**
@@ -141,7 +156,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
                 if ($routeParams.page) {
                     // Get current page
                     $scope.page = $routeParams.page;
-                    // Caluculate next/previous values
+                    // Calculate next/previous values
                     $scope.next = parseInt($routeParams.page) + 1;
                     $scope.prev = parseInt($routeParams.page) - 1;
                 }
@@ -194,6 +209,8 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
                                 categoriesList.push(category);
                             });
                         });
+                        categoriesList = categoriesList.unique();
+                        console.table(categoriesList);
                         $scope.categories = categoriesList;
                     })
                     .error(function () {
