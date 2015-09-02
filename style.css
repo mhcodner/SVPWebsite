@@ -46,14 +46,14 @@ body {
     .masonry-image {
         margin: 0.5%;
         width: 49%;
-        height: 37vw;
+        height: 33vw;
     }
 }
 
 @media (min-width: 750px) {
     .masonry-image {
         width: 32%;
-        height: 24vw;
+        height: 22vw;
         margin: 0.3%;
     }
 }
@@ -61,7 +61,7 @@ body {
 @media (min-width: 1024px) {
     .masonry-image {
         width: 24.4%;
-        height: 18vw;
+        height: 17vw;
         margin: 0.15%;
     }
 }
