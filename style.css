@@ -262,9 +262,7 @@ header::before {
 @media (min-width: 400px) {
     .title a {
         font-size: 2rem;
-        position: relative;
         top: 23px;
-        color: #9E9E9E;
     }
 }
 
