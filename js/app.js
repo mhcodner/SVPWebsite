@@ -1,11 +1,11 @@
 var baseThemeURI = samvennphotoJS.themeuri;
-var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSanitize'])
+var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSanitize', 'angular-loading-bar'])
 /**
  *
  *    Configure our app
  *
  */
-    .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+    .config(['$routeProvider', '$locationProvider', 'cfpLoadingBarProvider', function ($routeProvider, $locationProvider, cfpLoadingBarProvider) {
         /**
          *    Configure routes
          */
@@ -39,6 +39,8 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
          *    Remove # from the URL with $locationProvider
          */
         $locationProvider.html5Mode(true).hashPrefix('!');
+
+        cfpLoadingBarProvider.includeSpinner = false;
     }])
 
 /**
