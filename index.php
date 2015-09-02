@@ -17,7 +17,6 @@
 </head>
 <body>
 
-
 <header>
 
     <div class="title-container">
@@ -63,7 +62,6 @@
         <a href="https://instagram.com/samvennphotography/"><i class="fa fa-2x fa-instagram"></i></a>
     </div>
 </footer>
-
 
 <?php wp_footer(); ?>
 </body>

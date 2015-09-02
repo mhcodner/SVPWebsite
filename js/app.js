@@ -1,4 +1,4 @@
-var baseThemeURI = samvennphotoJS.themeuri;
+var baseThemeURI = '/wp-content/themes/SVPWebsite';
 var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSanitize', 'angular-loading-bar'])
 /**
  *
@@ -159,8 +159,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
          *  value of $routeParams.post, which is actually the post slug
          */
         var url = '/api/get_post/?slug=' + $routeParams.post;
-        if ($location.search().preview === 'true')
-        {
+        if ($location.search().preview === 'true') {
             url += '&preview=true&preview_id=' + $location.search().preview_id + '&preview_nonce=' + $location.search().preview_nonce;
         }
         $http.get(url)
