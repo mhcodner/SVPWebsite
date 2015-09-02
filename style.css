@@ -253,10 +253,19 @@ header::before {
 }
 
 .title a {
-    font-size: 2rem;
+    font-size: 1.8rem;
     position: relative;
-    top: 23px;
+    top: 26px;
     color: #9E9E9E;
+}
+
+@media (min-width: 400px) {
+    .title a {
+        font-size: 2rem;
+        position: relative;
+        top: 23px;
+        color: #9E9E9E;
+    }
 }
 
 .cd-logo {
