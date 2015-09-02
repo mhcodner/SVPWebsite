@@ -1,11 +1,11 @@
 <div class="container-fluid">
 	<div class="row">
-		<div class="post-content three columns">
+		<div class="post-content one-third column">
 			<h1 class="page-title">{{ post.post.title }}</h1>
 			<div ng-bind-html="post.post.content"></div>
 			<p><a href="/gallery/category/{{post.post.categories[0].slug}}">Others in this category</a></p>
 		</div>
-		<div class="nine columns">
+		<div class="two-thirds column">
 			<img class="u-max-full-width" src="{{post.post.thumbnail_images.full.url}}" />
 		</div>
 	</div>

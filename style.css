@@ -34,8 +34,10 @@ ul.category-list li {
     border-bottom: 1px solid #E1E1E1;
 }
 
-.post-content {
-    padding-top: 50px;
+@media (min-width: 1024px) {
+    .post-content {
+        padding-top: 50px;
+    }
 }
 
 .masonry-image {
