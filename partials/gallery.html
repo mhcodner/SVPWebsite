@@ -3,7 +3,7 @@
         <h3>Categories</h3>
         <ul class="category-list">
             <li ng-repeat="category in categories">
-                <a class="button" ng-class="{ primary:isCurrent(category.slug) }"
+                <a class="button" ng-class="{ 'button-primary':isCurrent(category.slug) }"
                    href="/gallery/category/{{ category.slug }}">{{ category.title }}</a>
             </li>
         </ul>

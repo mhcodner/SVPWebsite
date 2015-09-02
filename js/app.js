@@ -68,7 +68,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
          *    Perform a GET request on the API and pass the slug to it using $location.url()
          *    On success, pass the data to the view through $scope.page
          */
-        $http.get('/api/get_page/?slug=' + $location.url())
+        $http.get('/api/get_page/?slug=' + $location.url(), { cache: true})
             .success(function (data) {
                 $scope.page = data.page;
 
@@ -84,7 +84,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
     .controller('GetIndex', function ($scope, $rootScope, $http) {
         $rootScope.title = "Sam Venn Photography";
 
-        $http.get('/api/get_posts/').success(function (data) {
+        $http.get('/api/get_category_posts/?slug=featured', { cache: true}).success(function (data) {
             $scope.posts = data;
         });
     })
@@ -162,7 +162,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
         if ($location.search().preview === 'true') {
             url += '&preview=true&preview_id=' + $location.search().preview_id + '&preview_nonce=' + $location.search().preview_nonce;
         }
-        $http.get(url)
+        $http.get(url, { cache: true})
             .success(function (data) {
                 $scope.post = data;
 
@@ -177,22 +177,36 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
 
     .controller('CategoryList', function ($scope, $http, $location) {
 
-        /**
-         *  This method just gets the categories available to us and
-         *  makes them available through CategoryList controller
-         */
-        $http.get('/api/get_category_index/')
+        $http.get('/api/get_category_index/', { cache: true})
             .success(function (data) {
-                $scope.categories = data.categories;
+                var featuredCat;
+                for (var i = 0, iLen = data.categories.length; i < iLen; i++) {
+                    if (data.categories[i].slug == 'featured') {
+                        featuredCat = data.categories[i];
+                    }
+                }
+                var featuredCatId = featuredCat.id;
+                $http.get('/api/get_posts/?cat=-' + featuredCatId, { cache: true})
+                    .success(function (data) {
+                        var categoriesList = [];
+                        data.posts.forEach(function (post) {
+                            post.categories.forEach(function (category) {
+                                categoriesList.push(category);
+                            });
+                        });
+                        $scope.categories = categoriesList;
+                    })
+                    .error(function () {
+                        window.alert("We have been unable to access the feed :-(");
+                    });
             })
             .error(function () {
                 window.alert("We have been unable to access the feed :-(");
             });
 
+
         $scope.isCurrent = function (route) {
             var paths = $location.path().split('/');
-            console.log(route + " " + paths[paths.length - 2]);
-            console.log(route === paths[paths.length - 2]);
             return route === paths[paths.length - 2];
         }
 

@@ -34,6 +34,15 @@ module.exports = function (grunt) {
                 ],
                 dest: 'js/bundle.js'
             }
+        },
+        watch: {
+            scripts: {
+                files: ['**/*.js', '**/*.css', '!js/bundle.js'],
+                tasks: ['uglify', 'cssmin'],
+                options: {
+                    spawn: false
+                }
+            }
         }
     });
     // Default task.
