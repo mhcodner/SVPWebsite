@@ -45,4 +45,6 @@ jQuery(document).ready(function ($) {
         var mq = window.getComputedStyle(document.querySelector('header'), '::before').getPropertyValue('content').replace(/"/g, '').replace(/'/g, "");
         return mq != 'mobile';
     }
+
+    $('body').on('contextmenu', 'img', function(e){ return false; });
 });
