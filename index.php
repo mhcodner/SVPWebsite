@@ -54,12 +54,14 @@
     </div>
 </main>
 
-<footer class="container">
-    &copy; <?php echo date("Y"); ?> Sam Venn Photography
-    <div class="u-pull-right">
-        <a href="https://www.facebook.com/pages/Sam-Venn-Photography/311302692214440"><i
-                class="fa fa-2x fa-facebook-square"></i></a>
-        <a href="https://instagram.com/samvennphotography/"><i class="fa fa-2x fa-instagram"></i></a>
+<footer>
+    <div class="container">
+        &copy; <?php echo date("Y"); ?> Sam Venn Photography
+        <div class="u-pull-right">
+            <a href="https://www.facebook.com/pages/Sam-Venn-Photography/311302692214440"><i
+                    class="fa fa-2x fa-facebook-square"></i></a>
+            <a href="https://instagram.com/samvennphotography/"><i class="fa fa-2x fa-instagram"></i></a>
+        </div>
     </div>
 </footer>
 

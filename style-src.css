@@ -161,9 +161,11 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 }
 
 footer {
+    z-index: 3;
     padding-top: 5px;
     height: 40px;
     border-top: 1px solid #CCC;
+    background-color: #F2F2F2;
     -webkit-transition: -webkit-transform 0.3s;
     -moz-transition: -moz-transform 0.3s;
     transition: transform 0.3s;
@@ -451,7 +453,7 @@ header::before {
         line-height: 1;
         font-size: 1.6rem;
         border-bottom: none;
-        /* Prevent .cd-subnav-trigger flicker is Safari */
+        /* Prevent .cd-subnav-trigger flicker in Safari */
         -webkit-transform: translateZ(0);
         -moz-transform: translateZ(0);
         -ms-transform: translateZ(0);
