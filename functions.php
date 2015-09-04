@@ -37,11 +37,44 @@ function samvennphoto_setup() {
 
 	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 	remove_action( 'wp_print_styles', 'print_emoji_styles' );
+
+	$GLOBALS['content_width'] = apply_filters( 'samvennphoto_content_width', 640 );
+
+	// Create 'Featured' category if it doesn't exist
+	if (file_exists (ABSPATH.'/wp-admin/includes/taxonomy.php')) {
+		require_once (ABSPATH.'/wp-admin/includes/taxonomy.php');
+		if ( ! get_cat_ID( 'Featured' ) ) {
+			wp_create_category( 'Featured' );
+		}
+	}
+
+	// Create necessary pages to prevent 404
+	if (isset($_GET['activated']) && is_admin()){
+
+		$new_page_title = 'About';
+		$new_page_content = '';
+		$new_page_template = ''; //ex. template-custom.php. Leave blank if you don't want a custom page template.
+
+		//don't change the code bellow, unless you know what you're doing
+
+		$page_check = get_page_by_title($new_page_title);
+		$new_page = array(
+			'post_type' => 'page',
+			'post_title' => $new_page_title,
+			'post_content' => $new_page_content,
+			'post_status' => 'publish',
+			'post_author' => 1,
+		);
+		if(!isset($page_check->ID)){
+			$new_page_id = wp_insert_post($new_page);
+			if(!empty($new_page_template)){
+				update_post_meta($new_page_id, '_wp_page_template', $new_page_template);
+			}
+		}
+
+	}
 }
 endif; // samvennphoto_setup
-function oembed_html($html, $url, $attr, $post_id) {
-	return '<div class="video-wrapper">' . $html . '</div>';
-}
 add_action( 'after_setup_theme', 'samvennphoto_setup' );
 
 /**
@@ -51,10 +84,6 @@ add_action( 'after_setup_theme', 'samvennphoto_setup' );
  *
  * @global int $content_width
  */
-function samvennphoto_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'samvennphoto_content_width', 640 );
-}
-add_action( 'after_setup_theme', 'samvennphoto_content_width', 0 );
 
 /**
  * Enqueue scripts and styles.
