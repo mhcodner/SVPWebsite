@@ -29,13 +29,13 @@ function makePage($data)
     elseif (isset($data->post)) {
         $pageUrl = $data->post->url;
         $pageTitle = $data->post->title;
-        $metaDescription = substr(strip_tags($data->post->excerpt), 0, 155);
+        $metaDescription = strlen(substr(strip_tags($data->post->excerpt), 0, 155)) !== 0 ? substr(strip_tags($data->page->excerpt), 0, 155) : 'Photographer from Sydney';
         $pageContent = $data->post->content;
     }
     else {
         $pageUrl = $data->page->url;
         $pageTitle = $data->page->title;
-        $metaDescription = substr(strip_tags($data->page->excerpt), 0, 155);
+        $metaDescription = strlen(substr(strip_tags($data->page->excerpt), 0, 155)) !== 0 ? substr(strip_tags($data->page->excerpt), 0, 155) : 'Photographer from Sydney';
         $pageContent = $data->page->content;
     }
     $thumbUrl = isset($data->post->thumbnail) ? $data->post->thumbnail : 'http://' . $_SERVER['SERVER_NAME'] . '/wp-content/themes/SVPWebsite/img/SVP_Logo.png';
