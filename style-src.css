@@ -13,6 +13,8 @@ body {
 
 img {
     -ms-interpolation-mode: bicubic;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
 }
 
 .button.primary {
