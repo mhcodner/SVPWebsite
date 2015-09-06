@@ -52,6 +52,15 @@ if (!function_exists('samvennphoto_setup')) :
         // Create necessary pages to prevent 404
         if (isset($_GET['activated']) && is_admin()) {
 
+            $htaccess_rules = [
+                '# allow social media crawlers to work by redirecting them to a server-rendered static version on the page',
+                'RewriteCond %{REQUEST_URI} !^/wp-content/',
+                'RewriteCond %{QUERY_STRING} !^json=1$',
+                'RewriteCond %{HTTP_USER_AGENT} (facebookexternalhit/[0-9]|Twitterbot|Pinterest|Google.*snippet|Googlebot|redditbot|bingbot)',
+                'RewriteRule ^(.*)$ /wp-content/themes/SVPWebsite/static-page.php?slug=$1 [L,R=302]'
+            ];
+            add_htaccess($htaccess_rules);
+
             $new_page_title = 'About';
             $new_page_content = '';
             $new_page_template = ''; //ex. template-custom.php. Leave blank if you don't want a custom page template.
@@ -96,6 +105,7 @@ function samvennphoto_scripts()
 }
 
 add_action('wp_enqueue_scripts', 'samvennphoto_scripts');
+
 /**
  * Inserts an array of strings into a file (.htaccess ), placing it between
  * BEGIN and END markers. Replaces existing marked info. Retains surrounding
@@ -106,11 +116,7 @@ add_action('wp_enqueue_scripts', 'samvennphoto_scripts');
  */
 function add_htaccess($insertion)
 {
+    require_once(ABSPATH.'/wp-admin/includes/misc.php');
     $htaccess_file = ABSPATH . '.htaccess';
     return insert_with_markers($htaccess_file, 'SVP', (array)$insertion);
 }
-
-$htaccess_rules = [
-    'RewriteCond %{HTTP_USER_AGENT} (facebookexternalhit/[0-9]|Twitterbot|Pinterest|Google.*snippet|Googlebot|redditbot|bingbot)',
-    'RewriteRule blog/(\d*)/.*$ %%SITE_URL%%static-page.php?id=$1 [P]'
-];
