@@ -22,7 +22,7 @@
     <div class="title-container">
         <div class="cd-logo">
             <a href="/">
-                <img src="<?php echo get_template_directory_uri() ?>/img/SVP_Logo.png" alt="Logo">
+                <img src="<?php echo get_template_directory_uri() ?>/img/SVP_Logo_sm.png" alt="Logo">
             </a>
         </div>
         <div class="title">

@@ -11,6 +11,10 @@ body {
     font-family: 'Raleway', sans-serif;
 }
 
+img {
+    -ms-interpolation-mode: bicubic;
+}
+
 .button.primary {
     color: #FFFFFF;
     background-color: #9E9E9E;
