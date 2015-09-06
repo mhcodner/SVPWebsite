@@ -150,6 +150,7 @@ body {
 
 a {
     color: #7e4d7e;
+    outline: 0;
     text-decoration: none;
 }
 
