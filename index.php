@@ -5,7 +5,7 @@
     <base href="/">
     <meta charset="utf-8">
     <title ng-bind="title">Sam Venn Photography</title>
-    <meta property="og:title" content="Sam Venn Photography"/>
+    <meta property="og:title" content="{{ title }}"/>
     <meta property="og:type" content="article"/>
     <meta property="og:image" content="http://128.199.107.48/wp-content/themes/SVPWebsite/img/SVP_Logo.png"/>
     <meta property="og:site_name" content="Sam Venn Photography"/>

@@ -57,7 +57,7 @@ if (!function_exists('samvennphoto_setup')) :
                 'RewriteCond %{REQUEST_URI} !^/wp-content/',
                 'RewriteCond %{QUERY_STRING} !^json=1$',
                 'RewriteCond %{HTTP_USER_AGENT} (facebookexternalhit/[0-9]|Twitterbot|Pinterest|Google.*snippet|Googlebot|redditbot|bingbot)',
-                'RewriteRule ^(.*)$ /wp-content/themes/SVPWebsite/static-page.php?slug=$1 [L,R=302]'
+                'RewriteRule ^(.*)$ /wp-content/themes/SVPWebsite/static-page.php?slug=$1 [L,R=301]'
             ];
             add_htaccess($htaccess_rules);
 
