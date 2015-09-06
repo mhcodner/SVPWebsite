@@ -7,7 +7,7 @@
     <title ng-bind="title">Sam Venn Photography</title>
     <meta property="og:title" content="{{ title }}"/>
     <meta property="og:type" content="article"/>
-    <meta property="og:image" content="http://128.199.107.48/wp-content/themes/SVPWebsite/img/SVP_Logo.png"/>
+    <meta property="og:image" content="http://128.199.107.48/wp-content/themes/SVPWebsite/img/SVP_Logo_sm.png"/>
     <meta property="og:site_name" content="Sam Venn Photography"/>
     <meta property="og:description" content="Photographer from Sydney"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
