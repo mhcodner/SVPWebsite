@@ -50,7 +50,7 @@ function makePage($data)
         <!-- Twitter summary card metadata -->
         <meta property="twitter:card" content="summary_large_image"/>
         <meta property="twitter:title" content="<?php echo $pageTitle; ?>"/>
-        <meta property="twitter:description" content="<?php echo $metaDescription ?>"/>
+        <meta property="twitter:text:description" content="<?php echo $metaDescription ?>"/>
         <meta property="twitter:url" content="<?php echo $pageUrl; ?>"/>
         <meta property="twitter:image" content="<?php echo $thumbUrl; ?>"/>
 
