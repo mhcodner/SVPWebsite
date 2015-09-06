@@ -195,28 +195,9 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
 
         $http.get('/api/get_category_index/', {cache: true})
             .success(function (data) {
-                var featuredCat;
-                for (var i = 0, iLen = data.categories.length; i < iLen; i++) {
-                    if (data.categories[i].slug == 'featured') {
-                        featuredCat = data.categories[i];
-                    }
-                }
-                var featuredCatId = featuredCat.id;
-                $http.get('/api/get_posts/?cat=-' + featuredCatId, {cache: true})
-                    .success(function (data) {
-                        var categoriesList = [];
-                        data.posts.forEach(function (post) {
-                            post.categories.forEach(function (category) {
-                                categoriesList.pushIfNotExist(category, function(e) {
-                                    return e.slug === category.slug;
-                                });
-                            });
-                        });
-                        $scope.categories = categoriesList;
-                    })
-                    .error(function () {
-                        window.alert("We have been unable to access the feed :-(");
-                    });
+                $scope.categories = data.categories.filter(function (el) {
+                    return el.slug !== "featured";
+                });
             })
             .error(function () {
                 window.alert("We have been unable to access the feed :-(");
