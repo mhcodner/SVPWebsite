@@ -56,6 +56,7 @@
 
 <footer>
     <div class="container">
+        <hr />
         &copy; <?php echo date("Y"); ?> Sam Venn Photography
         <div class="u-pull-right">
             <a href="https://www.facebook.com/pages/Sam-Venn-Photography/311302692214440"><i

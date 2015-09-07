@@ -17,6 +17,12 @@ img {
     -webkit-touch-callout: none;
 }
 
+.button.button-round {
+    -webkit-border-radius: 18px;
+    -moz-border-radius: 18px;
+    border-radius: 18px;
+}
+
 .button.primary {
     color: #FFFFFF;
     background-color: #9E9E9E;
@@ -176,7 +182,8 @@ footer {
     transition: transform 0.3s;
 }
 
-footer > div {
+footer hr {
+    margin: 0 !important;
     padding-top: 5px !important;
     border-top: 1px solid #CCC;
 }

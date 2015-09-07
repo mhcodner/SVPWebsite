@@ -1,12 +1,22 @@
 <div class="container-fluid">
-	<div class="row">
-		<div class="post-content one-third column">
-			<h1 class="page-title">{{ post.post.title }}</h1>
-			<div ng-bind-html="post.post.content"></div>
-			<p><a href="/gallery/category/{{post.post.categories[0].slug}}">Others in this category</a></p>
-		</div>
-		<div class="two-thirds column">
-			<img class="u-max-full-width" src="{{post.post.thumbnail_images.full.url}}" />
-		</div>
-	</div>
+    <div class="row">
+        <div class="post-content one-third column">
+            <h1 class="page-title">{{ post.post.title }}</h1>
+
+            <div ng-bind-html="post.post.content"></div>
+            <div class="row">
+                <a ng-if="post.previous_url !== undefined" class="button button-round" href="{{ post.previous_url }}">
+                    <i class="fa fa-arrow-left"></i> Previous
+                </a>
+                <a ng-if="post.next_url !== undefined" class="button button-round u-pull-right" href="{{ post.next_url }}">
+                    Next <i class="fa fa-arrow-right"></i>
+                </a>
+            </div>
+            <p><a href="/gallery/category/{{post.post.categories[0].slug}}">Other {{post.post.categories[0].title}} images</a>
+            </p>
+        </div>
+        <div class="two-thirds column">
+            <img class="u-max-full-width" src="{{post.post.thumbnail_images.full.url}}"/>
+        </div>
+    </div>
 </div>

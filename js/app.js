@@ -1,21 +1,21 @@
 // check if an element exists in array using a comparer function
 // comparer : function(currentElement)
-Array.prototype.inArray = function(comparer) {
-    for(var i=0; i < this.length; i++) {
-        if(comparer(this[i])) return true;
+Array.prototype.inArray = function (comparer) {
+    for (var i = 0; i < this.length; i++) {
+        if (comparer(this[i])) return true;
     }
     return false;
 };
 
 // adds an element to the array if it does not already exist using a comparer
 // function
-Array.prototype.pushIfNotExist = function(element, comparer) {
+Array.prototype.pushIfNotExist = function (element, comparer) {
     if (!this.inArray(comparer)) {
         this.push(element);
     }
 };
 var baseThemeURI = '/wp-content/themes/SVPWebsite';
-var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSanitize', 'angular-loading-bar'])
+var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSanitize', 'angular-loading-bar', 'cfp.hotkeys'])
 /**
  *
  *    Configure our app
@@ -105,7 +105,11 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
         });
     })
 
-    .controller('GalleryList', function ($scope, $rootScope, $http, $routeParams) {
+    .controller('GalleryList', function ($scope, $rootScope, $http, $routeParams, $location, hotkeys) {
+
+        $scope.changeView = function (view) {
+            $location.path(view); // path not hash
+        };
 
         /**
          *  Get posts from a specific category by passing in the slug
@@ -136,9 +140,6 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
             $scope.page = 1;
             // Set a default next value
             $scope.next = 2;
-
-            // Inject the title into the rootScope
-            //$rootScope.title = 'Gallery';
         }
         url
             .success(function (data) {
@@ -149,7 +150,6 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
                  */
                 $scope.posts = data.posts;
                 $scope.paging = data;
-                //console.log(data);
 
                 // Inject the title into the rootScope
                 // $rootScope.title = data.category.title;
@@ -164,11 +164,41 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
             })
             .error(function () {
                 window.alert("We have been unable to access the feed :-(");
-            })
+            });
 
+        hotkeys.bindTo($scope)
+            .add({
+                combo: 'esc',
+                description: 'Remove category filter',
+                callback: function () {
+                    $scope.changeView('/gallery/');
+                }
+            })
+            /*.add({
+                combo: 'left',
+                description: 'Go to previous page',
+                callback: function () {
+                    if ($scope.post.previous_url) {
+                        $scope.changeView('/gallery/');
+                    }
+                }
+            })
+            .add({
+                combo: 'right',
+                description: 'Go to next page',
+                callback: function () {
+                    if ($scope.post.previous_url) {
+                        $scope.changeView('/gallery/');
+                    }
+                }
+            });*/
     })
 
-    .controller('BlogPost', function ($scope, $rootScope, $http, $routeParams, $location) {
+    .controller('BlogPost', function ($scope, $rootScope, $http, $routeParams, $location, hotkeys) {
+
+        $scope.changeView = function (view) {
+            $location.path(view); // path not hash
+        };
 
         /**
          *  Call the get_post method from the API and pass to it the
@@ -187,8 +217,27 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
             })
             .error(function () {
                 window.alert("We have been unable to access the feed :-(");
-            })
+            });
 
+        hotkeys.bindTo($scope)
+            .add({
+                combo: 'left',
+                description: 'Navigate to the previous image',
+                callback: function () {
+                    if ($scope.post.previous_url) {
+                        $scope.changeView($scope.post.previous_url.substring($scope.post.previous_url.indexOf('/', 7)));
+                    }
+                }
+            })
+            .add({
+                combo: 'right',
+                description: 'Navigate to the next image',
+                callback: function () {
+                    if ($scope.post.next_url) {
+                        $scope.changeView($scope.post.next_url.substring($scope.post.next_url.indexOf('/', 7)));
+                    }
+                }
+            });
     })
 
     .controller('CategoryList', function ($scope, $http, $location) {
