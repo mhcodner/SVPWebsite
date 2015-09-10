@@ -47,7 +47,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
                 controller: 'GetPage'
             })
             .when('/contact/', {
-                templateUrl: baseThemeURI + '/partials/page.html',
+                templateUrl: baseThemeURI + '/partials/contact.html',
                 controller: 'GetPage'
             });
 
@@ -68,7 +68,37 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
     .controller('MenuController', function ($scope, $location) {
         $scope.isActive = function (route) {
             return route === $location.path();
-        }
+        };
+    })
+
+    .controller('ContactController', function ($scope, $http) {
+        $scope.isSaving = undefined;
+
+        $scope.submitForm = function (isValid) {
+
+            // check to make sure the form is completely valid
+            if (isValid) {
+                $scope.isSaving = true;
+
+                $scope.contact = {
+                    name: '',
+                    email: '',
+                    message: ''
+                };
+                var contactOriginal = angular.copy($scope.contact);
+
+                $http.post('/api/contact/send_message/', $scope.contact).
+                    then(function () {
+                        $scope.isSaving = false;
+                        $scope.contact = angular.copy(contactOriginal);
+                        $scope.contactForm.$setPristine();
+                    }, function (response) {
+                        $scope.isSaving = false;
+                        alert(response.error);
+                    });
+            }
+
+        };
     })
 
 /**
@@ -78,7 +108,8 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
  *    to the API in order to retrieve information for the specific page
  *
  */
-    .controller('GetPage', function ($scope, $rootScope, $http, $location) {
+    .
+    controller('GetPage', function ($scope, $rootScope, $http, $location) {
 
         /**
          *    Perform a GET request on the API and pass the slug to it using $location.url()
@@ -173,25 +204,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
                 callback: function () {
                     $scope.changeView('/gallery/');
                 }
-            })
-            /*.add({
-                combo: 'left',
-                description: 'Go to previous page',
-                callback: function () {
-                    if ($scope.post.previous_url) {
-                        $scope.changeView('/gallery/');
-                    }
-                }
-            })
-            .add({
-                combo: 'right',
-                description: 'Go to next page',
-                callback: function () {
-                    if ($scope.post.previous_url) {
-                        $scope.changeView('/gallery/');
-                    }
-                }
-            });*/
+            });
     })
 
     .controller('BlogPost', function ($scope, $rootScope, $http, $routeParams, $location, hotkeys) {

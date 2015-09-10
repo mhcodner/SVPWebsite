@@ -48,15 +48,13 @@
 <main class="cd-main-content">
     <!-- main content here -->
     <div class="view-animate-container">
-
         <div ng-view class="view-animate" ng-cloak></div>
-
     </div>
 </main>
 
 <footer>
     <div class="container">
-        <hr />
+        <hr/>
         &copy; <?php echo date("Y"); ?> Sam Venn Photography
         <div class="u-pull-right">
             <a href="https://www.facebook.com/pages/Sam-Venn-Photography/311302692214440"><i
