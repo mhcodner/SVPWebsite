@@ -6,12 +6,12 @@
                 <div class="six columns">
                     <label for="email">Your email</label>
                     <input ng-model="contact.email" class="u-full-width" placeholder="name@example.com" id="email" type="email" required>
-                    <p ng-show="(contactForm.email.$error.email || contactForm.email.$error.required ) && contactForm.email.$touched" class="help-block">A valid email is required.</p>
+                    <p ng-show="contactForm.contact.email.$touched" class="help-block">A valid email is required.</p>
                 </div>
                 <div class="six columns">
                     <label for="name">Your name</label>
                     <input ng-model="contact.name" class="u-full-width" placeholder="John Smith" id="name" type="text" required>
-                    <p ng-show="contactForm.name.$error.required && contactForm.name.$touched" class="help-block">Your name is required.</p>
+                    <p ng-show="contactForm.name.$touched" class="help-block">Your name is required.</p>
                 </div>
             </div>
             <label for="message">Message</label>
@@ -19,6 +19,9 @@
             <p ng-show="contactForm.message.$invalid && contactForm.message.$touched" class="help-block">Your message is required.</p>
             <input ng-disabled="contactForm.$invalid" class="button-primary" value="Submit" type="submit">
         </fieldset>
+        <p>{{ contact.email }}</p>
+        <p>{{ contact.name }}</p>
+        <p>{{ contact.message }}</p>
     </form>
     <div ng-bind-html="page.content"></div>
 </div>

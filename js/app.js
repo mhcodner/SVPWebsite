@@ -74,27 +74,32 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
     .controller('ContactController', function ($scope, $http) {
         $scope.isSaving = undefined;
 
+        $scope.contact = {
+            name: '',
+            email: '',
+            message: ''
+        };
+        var contactOriginal = angular.copy($scope.contact);
+
         $scope.submitForm = function (isValid) {
 
             // check to make sure the form is completely valid
             if (isValid) {
                 $scope.isSaving = true;
 
-                $scope.contact = {
-                    name: '',
-                    email: '',
-                    message: ''
-                };
-                var contactOriginal = angular.copy($scope.contact);
-
                 $http.post('/api/contact/send_message/', $scope.contact).
-                    then(function () {
+                    then(function (response) {
                         $scope.isSaving = false;
                         $scope.contact = angular.copy(contactOriginal);
                         $scope.contactForm.$setPristine();
+                        if (response.error){
+                            alert(response.error);
+                        }
                     }, function (response) {
                         $scope.isSaving = false;
-                        alert(response.error);
+                        if (response.error){
+                            alert(response.error);
+                        }
                     });
             }
 

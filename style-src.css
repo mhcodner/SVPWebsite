@@ -26,6 +26,10 @@ img {
     border-radius: 18px;
 }
 
+.button:disabled, .button[disabled], .button:disabled:hover, .button[disabled]:hover {
+    opacity: 0.65;
+}
+
 @media (min-width: 1024px) {
     .hide-large {
         display: none !important;
@@ -36,11 +40,6 @@ img {
     .hide-small {
         display: none !important;
     }
-}
-
-.button.primary {
-    color: #FFFFFF;
-    background-color: #9E9E9E;
 }
 
 ul.category-list {
