@@ -92,12 +92,12 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
                         $scope.isSaving = false;
                         $scope.contact = angular.copy(contactOriginal);
                         $scope.contactForm.$setPristine();
-                        if (response.error){
+                        if (response.error) {
                             alert(response.error);
                         }
                     }, function (response) {
                         $scope.isSaving = false;
-                        if (response.error){
+                        if (response.error) {
                             alert(response.error);
                         }
                     });
@@ -113,8 +113,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
  *    to the API in order to retrieve information for the specific page
  *
  */
-    .
-    controller('GetPage', function ($scope, $rootScope, $http, $location) {
+    .controller('GetPage', function ($scope, $rootScope, $http, $location) {
 
         /**
          *    Perform a GET request on the API and pass the slug to it using $location.url()

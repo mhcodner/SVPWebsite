@@ -12,11 +12,15 @@
                     Next <i class="fa fa-arrow-right"></i>
                 </a>
             </div>
-            <p><a href="/gallery/category/{{post.post.categories[0].slug}}">Other {{post.post.categories[0].title}} images</a>
+            <p ng-if="post.post.custom_fields.buy_link[0] !== undefined">
+                <a href="{{ post.post.custom_fields.buy_link[0] }}" class="button">Buy this photo</a>
+            </p>
+            <p>
+                <a href="/gallery/category/{{ post.post.categories[0].slug }}">Other {{post.post.categories[0].title}} images</a>
             </p>
         </div>
         <div class="two-thirds column">
-            <img class="u-max-full-width" src="{{post.post.thumbnail_images.full.url}}"/>
+            <img class="u-max-full-width" src="{{ post.post.thumbnail_images.full.url }}"/>
         </div>
     </div>
 </div>
