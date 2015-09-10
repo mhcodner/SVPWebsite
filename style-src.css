@@ -12,6 +12,11 @@ body {
     letter-spacing: 1px;
     font-weight: 400;
     font-style: normal;
+    word-spacing: -3px;
+}
+
+.page-content {
+    word-spacing: normal;
 }
 
 img {

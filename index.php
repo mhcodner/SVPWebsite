@@ -54,7 +54,7 @@
     </aside>
     <!-- main content here -->
     <div class="view-animate-container">
-        <div ng-view class="view-animate" ng-cloak></div>
+        <div ng-view class="view-animate page-content" ng-cloak></div>
     </div>
 </main>
 
