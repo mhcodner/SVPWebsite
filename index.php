@@ -11,7 +11,7 @@
     <meta property="og:site_name" content="Sam Venn Photography"/>
     <meta property="og:description" content="Photographer from Sydney"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href='//fonts.googleapis.com/css?family=Raleway:200:400' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <?php wp_head(); ?>
 </head>
@@ -35,9 +35,9 @@
     <nav class="cd-main-nav-wrapper">
         <ul ng-controller="MenuController" class="cd-main-nav">
             <li><a ng-class="{ active:isActive('/') }" href="/">Home</a></li>
-            <li><a ng-class="{ active:isActive('/about/') }" href="/about">About</a></li>
+            <li class="hide-large"><a ng-class="{ active:isActive('/about/') }" href="/about">About</a></li>
             <li><a ng-class="{ active:isActive('/contact/') }" href="/contact">Contact</a></li>
-            <li><a ng-class="{ active:isActive('/gallery/') }" href="/gallery">Gallery</a></li>
+            <li class="hide-large"><a ng-class="{ active:isActive('/gallery/') }" href="/gallery">Gallery</a></li>
         </ul>
     </nav>
 
@@ -46,6 +46,12 @@
 </header>
 
 <main class="cd-main-content">
+    <aside class="sidebar hide-small">
+        <ul ng-controller="MenuController" class="side-nav">
+            <li><a ng-class="{ active:isActive('/about/') }" href="/about">About</a></li>
+            <li><a ng-class="{ active:isActive('/gallery/') }" href="/gallery">Gallery</a></li>
+        </ul>
+    </aside>
     <!-- main content here -->
     <div class="view-animate-container">
         <div ng-view class="view-animate" ng-cloak></div>
