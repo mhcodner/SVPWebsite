@@ -99,22 +99,22 @@ ul.category-list li {
 
 @media (min-width: 750px) {
     .masonry-image {
-        width: 32%;
-        height: 22vw;
-        margin: 0.3%;
+        width: 33%;
+        height: 23.5vw;
+        margin: 0.15%;
     }
 }
 
 @media (min-width: 1024px) {
     .masonry-image {
-        width: 24.4%;
+        width: 24.7%;
         height: 16.1vw;
         margin: 0.15%;
     }
 }
 
 .view-animate {
-    -webkit-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
 }
 
 .view-animate.ng-enter {
@@ -232,7 +232,7 @@ nav ul {
 }
 
 aside.sidebar {
-    width: 185px;
+    width: 10vw;
     height: calc(100vh - 120px);
     z-index: 2;
     position: fixed;
@@ -302,9 +302,6 @@ header::before {
 
 .title {
     display: inline-block;
-    -webkit-transform-style: preserve-3d;
-    -moz-transform-style: preserve-3d;
-    transform-style: preserve-3d;
     position: absolute;
 }
 
@@ -344,16 +341,21 @@ header::before {
     .title-container {
         position: absolute;
         margin-left: 4%;
+        pointer-events: none;
     }
 
     .cd-logo, .title {
         position: relative;
         z-index: 2;
+        pointer-events: all;
+    }
+
+    .title {
+        bottom: 110px;
     }
 
     .title a {
         font-size: 3rem;
-        top: -83px;
     }
 
     .cd-logo img {
@@ -582,7 +584,7 @@ header::before {
 
 @media only screen and (min-width: 1024px) {
     .cd-main-content {
-        padding-left: 200px;
+        padding-left: 11vw;
     }
 
     .cd-main-content.nav-is-visible {
