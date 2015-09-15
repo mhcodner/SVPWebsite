@@ -51,6 +51,9 @@ if (!function_exists('samvennphoto_setup')) :
 
         // Create necessary pages to prevent 404
         if (isset($_GET['activated']) && is_admin()) {
+            // Change permalink structure
+            global $wp_rewrite;
+            $wp_rewrite->set_permalink_structure( '/gallery/%postname%/' );
 
             $htaccess_rules = [
                 '# allow social media crawlers to work by redirecting them to a server-rendered static version on the page',
