@@ -1,19 +1,3 @@
-// check if an element exists in array using a comparer function
-// comparer : function(currentElement)
-Array.prototype.inArray = function (comparer) {
-    for (var i = 0; i < this.length; i++) {
-        if (comparer(this[i])) return true;
-    }
-    return false;
-};
-
-// adds an element to the array if it does not already exist using a comparer
-// function
-Array.prototype.pushIfNotExist = function (element, comparer) {
-    if (!this.inArray(comparer)) {
-        this.push(element);
-    }
-};
 var baseThemeURI = '/wp-content/themes/SVPWebsite';
 var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSanitize', 'angular-loading-bar', 'cfp.hotkeys'])
 /**
@@ -34,7 +18,15 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
                 templateUrl: baseThemeURI + '/partials/gallery.html',
                 controller: 'GalleryList'
             })
+            .when('/gallery/page/:page/', {
+                templateUrl: baseThemeURI + '/partials/gallery.html',
+                controller: 'GalleryList'
+            })
             .when('/gallery/category/:category/', {
+                templateUrl: baseThemeURI + '/partials/gallery.html',
+                controller: 'GalleryList'
+            })
+            .when('/gallery/category/:category/page/:page/', {
                 templateUrl: baseThemeURI + '/partials/gallery.html',
                 controller: 'GalleryList'
             })
@@ -135,7 +127,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
     .controller('GetIndex', function ($scope, $rootScope, $http) {
         $rootScope.title = "Sam Venn Photography";
 
-        $http.get('/api/get_category_posts/?slug=featured', {cache: true}).success(function (data) {
+        $http.get('/api/get_posts/?category_name=featured&posts_per_page=12', {cache: true}).success(function (data) {
             $scope.posts = data;
         });
     })
@@ -149,7 +141,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
         /**
          *  Get posts from a specific category by passing in the slug
          */
-        var url;
+        var url = '/api/get_posts?posts_per_page=12';
         $rootScope.title = 'Gallery';
         /**
          *  Get the parameter passed into the controller (if it exists)
@@ -157,26 +149,20 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
          *  is looking at a specific category.
          */
         if ($routeParams.category) {
-            url = $http.get('/api/get_category_posts/?slug=' + $routeParams.category);
+            url += '&category_name=' + $routeParams.category;
         }
-        else if ($routeParams.page) {
+        if ($routeParams.page) {
             /**
              *  If a page parameter has been passed, send this to the API
              */
-            url = $http.get('/api/get_posts/?page=' + $routeParams.page);
+            url += '&page=' + $routeParams.page;
         }
-        else {
-            /**
-             *  If no parameter supplied, just get all posts
-             */
-            url = $http.get('/api/get_posts');
 
-            // Set a default paging value
-            $scope.page = 1;
-            // Set a default next value
-            $scope.next = 2;
-        }
-        url
+        // Set a default paging value
+        $scope.page = 1;
+        // Set a default next value
+        $scope.next = 2;
+        $http.get(url)
             .success(function (data) {
                 /**
                  *  Pass data from the feed to the view.
@@ -196,6 +182,15 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
                     $scope.next = parseInt($routeParams.page) + 1;
                     $scope.prev = parseInt($routeParams.page) - 1;
                 }
+
+                if ($routeParams.category) {
+                    $scope.nextLink = '/gallery/category/' + $routeParams.category + '/page/' + $scope.next;
+                    $scope.prevLink = '/gallery/category/' + $routeParams.category + '/page/' + $scope.prev;
+                }
+                else {
+                    $scope.nextLink = '/gallery/page/' + $scope.next;
+                    $scope.prevLink = '/gallery/page/' + $scope.prev;
+                }
             })
             .error(function () {
                 window.alert("We have been unable to access the feed :-(");
@@ -207,6 +202,24 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
                 description: 'Remove category filter',
                 callback: function () {
                     $scope.changeView('/gallery/');
+                }
+            })
+            .add({
+                combo: 'left',
+                description: 'Navigate to previous page',
+                callback: function () {
+                    if ($scope.prevLink) {
+                        $scope.changeView($scope.prevLink);
+                    }
+                }
+            })
+            .add({
+                combo: 'right',
+                description: 'Navigate to next page',
+                callback: function () {
+                    if ($scope.nextLink) {
+                        $scope.changeView($scope.nextLink);
+                    }
                 }
             });
     })
@@ -228,6 +241,9 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
         $http.get(url, {cache: true})
             .success(function (data) {
                 $scope.post = data;
+
+                console.log(data.post.categories[0].slug === 'featured');
+                $scope.category = (data.post.categories[0].slug === 'featured') ? data.post.categories[1] : data.post.categories[0];
 
                 // Inject the title into the rootScope
                 $rootScope.title = data.post.title;

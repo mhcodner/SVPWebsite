@@ -16,3 +16,16 @@
         </a>
     </div>
 </div>
+<div ng-show="paging.pages > 1" class="container">
+    <div class="row">
+        <div class="paging-text">
+            <a class="button button-round u-pull-left" ng-show="prev > 0" ng-href="{{ prevLink }}">
+                <i class="fa fa-arrow-left"></i> Previous
+            </a>
+            <span class="hide-small">Page {{ page }} of {{paging.pages}}</span>
+            <a class="button button-round u-pull-right" ng-show="next <= paging.pages" ng-href="{{ nextLink }}">
+                Next <i class="fa fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</div>

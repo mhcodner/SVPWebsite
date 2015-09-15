@@ -25,6 +25,21 @@ img {
     -webkit-touch-callout: none;
 }
 
+.paging-text {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.paging-text span {
+    height: 38px;
+    line-height: 38px;
+    padding: 0 30px;
+}
+
+.paging-text .button {
+    margin-bottom: 0;
+}
+
 .button.button-round {
     -webkit-border-radius: 18px;
     -moz-border-radius: 18px;
@@ -32,7 +47,10 @@ img {
 }
 
 .button:disabled, .button[disabled], .button:disabled:hover, .button[disabled]:hover {
+    cursor: not-allowed;
     opacity: 0.65;
+    color: #333;
+    border-color: #888;
 }
 
 @media (min-width: 1024px) {
@@ -53,7 +71,6 @@ ul.category-list {
 }
 
 ul.category-list li {
-    padding: 5px;
     display: inline;
 }
 
@@ -87,7 +104,6 @@ ul.category-list li {
 }
 
 .container-fluid {
-    transform: translateX(0);
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
@@ -119,11 +135,11 @@ ul.category-list li {
 }
 
 .view-animate {
-    transition: all 0.5s ease-out;
+    transition: all 0.3s ease-in-out;
 }
 
 .view-animate.ng-enter {
-    transition: 0.5s linear all;
+    transition-delay: 0.3s;
     opacity: 0;
 }
 
@@ -172,6 +188,7 @@ Primary style
 
 html {
     font-size: 62.5%;
+    overflow-y: scroll;
 }
 
 body {
@@ -194,6 +211,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 }
 
 footer {
+    margin-top: 10px;
     z-index: 3;
     height: 40px;
     background-color: #F2F2F2;
@@ -238,7 +256,7 @@ nav ul {
 
 aside.sidebar {
     width: 10vw;
-    height: calc(100vh - 120px);
+    height: calc(100vh - 130px);
     z-index: 2;
     position: fixed;
     left: 0;
@@ -571,7 +589,7 @@ header::before {
 .cd-main-content {
     position: relative;
     z-index: 2;
-    min-height: calc(100vh - 40px);
+    min-height: calc(100vh - 50px);
     padding-top: 80px;
     background-color: #f2f2f2;
     -webkit-transition: -webkit-transform 0.3s;
@@ -588,7 +606,7 @@ header::before {
 }
 
 @media only screen and (min-width: 1024px) {
-    .cd-main-content {
+    footer, .cd-main-content {
         padding-left: 11vw;
     }
 
