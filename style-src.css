@@ -189,6 +189,11 @@ Primary style
 html {
     font-size: 62.5%;
     overflow-y: scroll;
+    -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+    width: 0 !important;
 }
 
 body {
