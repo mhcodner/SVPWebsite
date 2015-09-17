@@ -62,7 +62,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
  */
 
     .controller('404', function ($rootScope) {
-        $rootScope.title = "404 - Page not found";
+        $rootScope.title = '404 - Page not found - Sam Venn Photography';
     })
 
     .controller('MenuController', function ($scope, $location) {
@@ -128,7 +128,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
                 $scope.page = data.page;
 
                 // Inject the title into the rootScope
-                $rootScope.title = data.page.title;
+                $rootScope.title = data.page.title + ' - Sam Venn Photography';
             })
             .error(function () {
                 window.alert("We have been unable to access the feed :-(");
@@ -167,7 +167,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
          *  Get posts from a specific category by passing in the slug
          */
         var url = '/api/get_posts?posts_per_page=12';
-        $rootScope.title = 'Gallery';
+        $rootScope.title = 'Gallery - Sam Venn Photography';
         /**
          *  Get the parameter passed into the controller (if it exists)
          *  and then construct the GET URL. If parameter exists, the user
@@ -196,9 +196,6 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
                  */
                 $scope.posts = data.posts;
                 $scope.paging = data;
-
-                // Inject the title into the rootScope
-                // $rootScope.title = data.category.title;
 
                 if ($routeParams.page) {
                     // Get current page
@@ -274,7 +271,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
                 $scope.category = (data.post.categories[0].slug === 'featured') ? data.post.categories[1] : data.post.categories[0];
 
                 // Inject the title into the rootScope
-                $rootScope.title = data.post.title;
+                $rootScope.title = data.post.title + ' - Sam Venn Photography';
             })
             .error(function () {
                 window.alert("We have been unable to access the feed :-(");

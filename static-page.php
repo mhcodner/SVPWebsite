@@ -28,13 +28,13 @@ function makePage($data)
     }
     elseif (isset($data->post)) {
         $pageUrl = $data->post->url;
-        $pageTitle = $data->post->title;
+        $pageTitle = $data->post->title . ' - Sam Venn Photography';
         $metaDescription = strlen(substr(strip_tags($data->post->excerpt), 0, 155)) !== 0 ? substr(strip_tags($data->page->excerpt), 0, 155) : 'Photographer from Sydney';
         $pageContent = $data->post->content;
     }
     else {
         $pageUrl = $data->page->url;
-        $pageTitle = $data->page->title;
+        $pageTitle = $data->page->title . ' - Sam Venn Photography';
         $metaDescription = strlen(substr(strip_tags($data->page->excerpt), 0, 155)) !== 0 ? substr(strip_tags($data->page->excerpt), 0, 155) : 'Photographer from Sydney';
         $pageContent = $data->page->content;
     }
