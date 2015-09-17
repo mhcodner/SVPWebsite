@@ -23,7 +23,7 @@ if (!function_exists('samvennphoto_setup')) :
          * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
          */
         add_theme_support('post-thumbnails');
-        set_post_thumbnail_size( 400, 300, true );
+        set_post_thumbnail_size(400, 300, true);
 
         remove_action('wp_head', 'wp_generator');
         remove_action('wp_head', 'wlwmanifest_link');
@@ -54,15 +54,23 @@ if (!function_exists('samvennphoto_setup')) :
         if (isset($_GET['activated']) && is_admin()) {
             // Change permalink structure
             global $wp_rewrite;
-            $wp_rewrite->set_permalink_structure( '/gallery/%postname%/' );
+            $wp_rewrite->set_permalink_structure('/gallery/%postname%/');
 
-            $htaccess_rules = [
-                '# allow social media crawlers to work by redirecting them to a server-rendered static version on the page',
-                'RewriteCond %{REQUEST_URI} !^/wp-content/',
-                'RewriteCond %{QUERY_STRING} !^json=1$',
-                'RewriteCond %{HTTP_USER_AGENT} (facebookexternalhit/[0-9]|Twitterbot|Pinterest|Google.*snippet|Googlebot|redditbot|bingbot)',
-                'RewriteRule ^(.*)$ /wp-content/themes/SVPWebsite/static-page.php?slug=$1 [L]'
-            ];
+            $htaccess_rules = <<<'EOT'
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+# allow social media crawlers to work by redirecting them to a server-rendered static version on the page
+RewriteCond %{REQUEST_URI} !^/wp-content/
+RewriteCond %{QUERY_STRING} !^json=1$
+RewriteCond %{HTTP_USER_AGENT} (facebookexternalhit/[0-9]|Twitterbot|Pinterest|Google.*snippet|Googlebot|redditbot|bingbot)
+RewriteRule ^(.*)$ /wp-content/themes/SVPWebsite/static-page.php?slug=$1 [L]
+</IfModule>
+EOT;
             add_htaccess($htaccess_rules);
 
             $new_page_title = 'About';
@@ -120,7 +128,7 @@ add_action('wp_enqueue_scripts', 'samvennphoto_scripts');
  */
 function add_htaccess($insertion)
 {
-    require_once(ABSPATH.'/wp-admin/includes/misc.php');
     $htaccess_file = ABSPATH . '.htaccess';
-    return insert_with_markers($htaccess_file, 'SVP', (array)$insertion);
+    file_put_contents($htaccess_file, $insertion);
+    return file_get_contents($htaccess_file);
 }
