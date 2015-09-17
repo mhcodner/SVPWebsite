@@ -59,16 +59,16 @@ if (!function_exists('samvennphoto_setup')) :
             $htaccess_rules = <<<'EOT'
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteBase /
-RewriteRule ^index\.php$ - [L]
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /index.php [L]
 # allow social media crawlers to work by redirecting them to a server-rendered static version on the page
 RewriteCond %{REQUEST_URI} !^/wp-content/
 RewriteCond %{QUERY_STRING} !^json=1$
 RewriteCond %{HTTP_USER_AGENT} (facebookexternalhit/[0-9]|Twitterbot|Pinterest|Google.*snippet|Googlebot|redditbot|bingbot)
 RewriteRule ^(.*)$ /wp-content/themes/SVPWebsite/static-page.php?slug=$1 [L]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
 </IfModule>
 EOT;
             add_htaccess($htaccess_rules);
