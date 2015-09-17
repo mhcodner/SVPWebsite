@@ -41,6 +41,10 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
             .when('/contact/', {
                 templateUrl: baseThemeURI + '/partials/contact.html',
                 controller: 'GetPage'
+            })
+            .otherwise({
+                templateUrl: baseThemeURI + '/partials/404.html',
+                controller: '404'
             });
 
         /**
@@ -56,6 +60,10 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
  *    On runtime define the page titles for injecting into the page <title> tag
  *
  */
+
+    .controller('404', function ($rootScope) {
+        $rootScope.title = "404 - Page not found";
+    })
 
     .controller('MenuController', function ($scope, $location) {
         $scope.isActive = function (route) {
@@ -105,7 +113,11 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
  *    to the API in order to retrieve information for the specific page
  *
  */
-    .controller('GetPage', function ($scope, $rootScope, $http, $location) {
+    .controller('GetPage', function ($scope, $rootScope, $http, $location, $window) {
+
+        $scope.$on('$viewContentLoaded', function(event) {
+            $window.ga('send', 'pageview', { page: $location.url() })
+        });
 
         /**
          *    Perform a GET request on the API and pass the slug to it using $location.url()
@@ -124,15 +136,28 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
 
     })
 
-    .controller('GetIndex', function ($scope, $rootScope, $http) {
+    .controller('GetIndex', function ($scope, $rootScope, $http, $window, $location) {
+
+        $scope.$on('$viewContentLoaded', function(event) {
+            $window.ga('send', 'pageview', { page: $location.url() })
+        });
+
         $rootScope.title = "Sam Venn Photography";
+
+        $scope.defaultThumb = baseThemeURI + '/img/default-thumb.jpg';
 
         $http.get('/api/get_posts/?category_name=featured&posts_per_page=12', {cache: true}).success(function (data) {
             $scope.posts = data;
         });
     })
 
-    .controller('GalleryList', function ($scope, $rootScope, $http, $routeParams, $location, hotkeys) {
+    .controller('GalleryList', function ($scope, $rootScope, $http, $routeParams, $location, hotkeys, $window) {
+
+        $scope.$on('$viewContentLoaded', function(event) {
+            $window.ga('send', 'pageview', { page: $location.url() })
+        });
+
+        $scope.defaultThumb = baseThemeURI + '/img/default-thumb.jpg';
 
         $scope.changeView = function (view) {
             $location.path(view); // path not hash
@@ -224,7 +249,11 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
             });
     })
 
-    .controller('BlogPost', function ($scope, $rootScope, $http, $routeParams, $location, hotkeys) {
+    .controller('BlogPost', function ($scope, $rootScope, $http, $routeParams, $location, hotkeys, $window) {
+
+        $scope.$on('$viewContentLoaded', function(event) {
+            $window.ga('send', 'pageview', { page: $location.url() })
+        });
 
         $scope.changeView = function (view) {
             $location.path(view); // path not hash
@@ -242,7 +271,6 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
             .success(function (data) {
                 $scope.post = data;
 
-                console.log(data.post.categories[0].slug === 'featured');
                 $scope.category = (data.post.categories[0].slug === 'featured') ? data.post.categories[1] : data.post.categories[0];
 
                 // Inject the title into the rootScope

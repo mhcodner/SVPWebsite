@@ -12,7 +12,7 @@
 <div class="container-fluid">
     <div class="row">
         <a ng-repeat="post in posts" class="masonry-image" href="/gallery/{{post.slug}}">
-            <img ng-src="{{post.thumbnail_images.thumbnail.url}}" alt="Placeholder"/>
+            <img ng-src="{{ post.thumbnail_images.thumbnail.url != '' && post.thumbnail_images.thumbnail.url || defaultThumb }}" alt="{{ post.title }}"/>
         </a>
     </div>
 </div>

@@ -23,6 +23,7 @@ if (!function_exists('samvennphoto_setup')) :
          * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
          */
         add_theme_support('post-thumbnails');
+        set_post_thumbnail_size( 400, 300, true );
 
         remove_action('wp_head', 'wp_generator');
         remove_action('wp_head', 'wlwmanifest_link');

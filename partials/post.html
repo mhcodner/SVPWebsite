@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div ng-if="post.post.thumbnail_images.thumbnail.url" class="container-fluid">
     <div class="row">
         <div class="post-content one-third column">
             <h1 class="page-title">{{ post.post.title }}</h1>
@@ -21,6 +21,23 @@
         </div>
         <div class="two-thirds column">
             <img class="u-max-full-width" src="{{ post.post.thumbnail_images.full.url }}"/>
+        </div>
+    </div>
+</div>
+<div ng-if="!post.post.thumbnail_images.thumbnail.url" class="container">
+    <div class="row">
+        <div class="post-content">
+            <h1 class="page-title">{{ post.post.title }}</h1>
+
+            <div ng-bind-html="post.post.content"></div>
+            <div class="row">
+                <a ng-if="post.previous_url !== undefined" class="button button-round" href="{{ post.previous_url }}">
+                    <i class="fa fa-arrow-left"></i> Previous
+                </a>
+                <a ng-if="post.next_url !== undefined" class="button button-round u-pull-right" href="{{ post.next_url }}">
+                    Next <i class="fa fa-arrow-right"></i>
+                </a>
+            </div>
         </div>
     </div>
 </div>
