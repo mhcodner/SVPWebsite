@@ -45,4 +45,5 @@ jQuery(document).ready(function ($) {
     }
 
     $('body').on('contextmenu', 'img', function(e){ return false; });
+    $('body').on('contextmenu', '.post-image', function(e){ return false; });
 });

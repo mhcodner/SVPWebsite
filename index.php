@@ -32,12 +32,9 @@
         </div>
     </div>
 
-    <nav class="cd-main-nav-wrapper">
-        <ul ng-controller="MenuController" class="cd-main-nav">
-            <li><a ng-class="{ active:isActive('/') }" href="/">Home</a></li>
-            <li class="hide-large"><a ng-class="{ active:isActive('/about/') }" href="/about">About</a></li>
-            <li><a ng-class="{ active:isActive('/contact/') }" href="/contact">Contact</a></li>
-            <li class="hide-large"><a ng-class="{ active:isActive('/gallery/') }" href="/gallery">Gallery</a></li>
+    <nav class="cd-main-nav-wrapper hide-large">
+        <ul ng-controller="MenuController" id="main-nav" class="cd-main-nav">
+            <li ng-repeat="item in menuItems" ><a ng-class="{ active:isActive(item.url) }" ng-href="{{ item.url }}">{{ item.title }}</a></li>
         </ul>
     </nav>
 
@@ -48,8 +45,7 @@
 <main class="cd-main-content">
     <aside class="sidebar hide-small">
         <ul ng-controller="MenuController" class="side-nav">
-            <li><a ng-class="{ active:isActive('/about/') }" href="/about">About</a></li>
-            <li><a ng-class="{ active:isActive('/gallery/') }" href="/gallery">Gallery</a></li>
+            <li ng-repeat="item in menuItems" ><a ng-class="{ active:isActive(item.url) }" ng-href="{{ item.url }}">{{ item.title }}</a></li>
         </ul>
     </aside>
     <!-- main content here -->

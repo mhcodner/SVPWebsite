@@ -107,16 +107,25 @@ function samvennphoto_scripts()
     wp_enqueue_style('samvennphoto-style', get_stylesheet_uri());
 
     wp_enqueue_script('samvennphoto-main', get_template_directory_uri() . '/js/bundle.js', array(), '', true);
-
-    // Variables for app script
-    wp_localize_script('samvennphoto-js', 'samvennphotoJS',
-        array(
-            'themeuri' => get_template_directory_uri(),
-        )
-    );
 }
 
 add_action('wp_enqueue_scripts', 'samvennphoto_scripts');
+
+function theme_menu() {
+    register_nav_menu( 'primary', 'Main Navigation Menu' );
+}
+add_action( 'init', 'theme_menu' );
+
+function js_vars() {
+    ?>
+    <script>
+        var themeSettings = {
+            themeUri: '<?php echo get_template_directory_uri(); ?>',
+            siteURL: '<?php echo get_site_url(); ?>'
+        };
+    </script>
+<?php }
+add_action( 'wp_footer', 'js_vars', 10 );
 
 /**
  * Inserts an array of strings into a file (.htaccess ), placing it between

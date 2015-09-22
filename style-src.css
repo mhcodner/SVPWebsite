@@ -85,6 +85,43 @@ ul.category-list li {
     }
 }
 
+.post-image {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+.post-image .overlay {
+    width: 25%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+}
+
+.overlay.left {
+    cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAeUlEQVRIie2VsQ2AIBAA2cRJnIMtXMZ17KltbWlpqc8GYoIQo/7byCXf3kGAYMyvACzg01gNeeQgikUq8syqKQdwmnIPDF3+qfwO54UAo5A8M5WBWVBeDejuQPgMAq3LcBF593J7RCOyaEc2kUAjIvejFZGQRlb+lB0Hr1X0GCgD7QAAAABJRU5ErkJggg=="), auto;
+}
+
+.overlay.right {
+    right: 0;
+    left: auto;
+    cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAcklEQVRIie2VsQ3AIAwEWSxzsAW7MUXqzJCWlvpSBClIkCLCTxNOcvsny5bt3C8APHCW8orwzEM2lQAHLXYSIHYE5pJ9SfQS7h0fpS8BgkF4LdmUAoA4twP5DL6AclVX+Fu49poy4R9oP1olSaVsw0e5AOoSQsdKZD5qAAAAAElFTkSuQmCC"), auto;
+}
+
+.overlay.middle {
+    left: 25%;
+    right: 25%;
+    width: 50%;
+    cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAA1ElEQVRIie2UvQ2DMBCF2YRJPIe38BBZgREyAT2967S0tLSuvxScleOCCThpIvFJSOCf9873LJrm4lcAAZiBEfBq/MGLe614x5oEBJkb1XhfIx6VQAQm9d1VGwCt3Qx4wJm2aI4ZiFCuNEmlnbzPMj9UGbCEmZS4l+o1Cbjxns2+gdkwSTsiZXLbdEGhJG7DdKwDLRFZtxSgs+JbYSaOk0+rwx9sa3SYNeS8cvjenqLdOM1ZetFwe0F/bfDpJpUMglpjr+1l8GcGjuV/ZJ/2zJqLwzwB81gcvv1dsBMAAAAASUVORK5CYII="), auto;
+}
+
+.overlay span {
+    z-index: 5;
+}
+
 .masonry-image {
     margin: 1%;
     float: left;
@@ -199,11 +236,11 @@ html::-webkit-scrollbar {
 body {
     font-size: 1.6rem;
     color: #33414a;
-    background-color: #f2f2f2;
+    background-color: #FFFFFF;
 }
 
 a {
-    color: #7e4d7e;
+    color: #7f7f7f;
     outline: 0;
     text-decoration: none;
 }
@@ -219,7 +256,7 @@ footer {
     margin-top: 10px;
     z-index: 3;
     height: 40px;
-    background-color: #F2F2F2;
+    background-color: #FFFFFF;
     -webkit-transition: -webkit-transform 0.3s;
     -moz-transition: -moz-transform 0.3s;
     transition: transform 0.3s;
@@ -337,7 +374,8 @@ header::before {
     font-size: 1.8rem;
     position: relative;
     top: 26px;
-    color: #9E9E9E;
+    color: #000000;
+    text-transform: uppercase;
 }
 
 @media (min-width: 400px) {
@@ -596,7 +634,7 @@ header::before {
     z-index: 2;
     min-height: calc(100vh - 50px);
     padding-top: 80px;
-    background-color: #f2f2f2;
+    background-color: #ffffff;
     -webkit-transition: -webkit-transform 0.3s;
     -moz-transition: -moz-transform 0.3s;
     transition: transform 0.3s;

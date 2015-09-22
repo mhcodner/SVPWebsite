@@ -1,4 +1,4 @@
-var baseThemeURI = '/wp-content/themes/SVPWebsite';
+var baseThemeURI = themeSettings.themeUri;
 var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSanitize', 'angular-loading-bar', 'cfp.hotkeys'])
 /**
  *
@@ -65,10 +65,23 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
         $rootScope.title = '404 - Page not found - Sam Venn Photography';
     })
 
-    .controller('MenuController', function ($scope, $location) {
+    .controller('MenuController', function ($scope, $location, $http) {
         $scope.isActive = function (route) {
-            return route === $location.path();
+            return route.replace(themeSettings.siteURL, '') === $location.path();
         };
+
+        $http.get('/api/menu/get_menu/').
+            then(function (response) {
+                $scope.menuItems = response.data.menuItems;
+                if (response.error) {
+                    console.log(response.error);
+                }
+            }, function (response) {
+                if (response.error) {
+                    console.log(response.error);
+                }
+            });
+
     })
 
     .controller('ContactController', function ($scope, $http) {
@@ -115,8 +128,8 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
  */
     .controller('GetPage', function ($scope, $rootScope, $http, $location, $window) {
 
-        $scope.$on('$viewContentLoaded', function(event) {
-            $window.ga('send', 'pageview', { page: $location.url() })
+        $scope.$on('$viewContentLoaded', function (event) {
+            $window.ga('send', 'pageview', {page: $location.url()})
         });
 
         /**
@@ -138,8 +151,8 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
 
     .controller('GetIndex', function ($scope, $rootScope, $http, $window, $location) {
 
-        $scope.$on('$viewContentLoaded', function(event) {
-            $window.ga('send', 'pageview', { page: $location.url() })
+        $scope.$on('$viewContentLoaded', function (event) {
+            $window.ga('send', 'pageview', {page: $location.url()})
         });
 
         $rootScope.title = "Sam Venn Photography";
@@ -153,8 +166,8 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
 
     .controller('GalleryList', function ($scope, $rootScope, $http, $routeParams, $location, hotkeys, $window) {
 
-        $scope.$on('$viewContentLoaded', function(event) {
-            $window.ga('send', 'pageview', { page: $location.url() })
+        $scope.$on('$viewContentLoaded', function (event) {
+            $window.ga('send', 'pageview', {page: $location.url()})
         });
 
         $scope.defaultThumb = baseThemeURI + '/img/default-thumb.jpg';
@@ -248,12 +261,28 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
 
     .controller('BlogPost', function ($scope, $rootScope, $http, $routeParams, $location, hotkeys, $window) {
 
-        $scope.$on('$viewContentLoaded', function(event) {
-            $window.ga('send', 'pageview', { page: $location.url() })
+        $scope.$on('$viewContentLoaded', function (event) {
+            $window.ga('send', 'pageview', {page: $location.url()});
         });
 
         $scope.changeView = function (view) {
             $location.path(view); // path not hash
+        };
+
+        $scope.escape = function() {
+            $scope.changeView('/gallery/category/' + $scope.category.slug);
+        };
+
+        $scope.previous = function() {
+            if ($scope.post.previous_url) {
+                $scope.changeView($scope.post.previous_url.substring($scope.post.previous_url.indexOf('/', 7)));
+            }
+        };
+
+        $scope.next = function() {
+            if ($scope.post.next_url) {
+                $scope.changeView($scope.post.next_url.substring($scope.post.next_url.indexOf('/', 7)));
+            }
         };
 
         /**
@@ -279,21 +308,24 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
 
         hotkeys.bindTo($scope)
             .add({
+                combo: 'esc',
+                description: 'Navigate to the category listing',
+                callback: function () {
+                    $scope.escape();
+                }
+            })
+            .add({
                 combo: 'left',
                 description: 'Navigate to the previous image',
                 callback: function () {
-                    if ($scope.post.previous_url) {
-                        $scope.changeView($scope.post.previous_url.substring($scope.post.previous_url.indexOf('/', 7)));
-                    }
+                    $scope.previous();
                 }
             })
             .add({
                 combo: 'right',
                 description: 'Navigate to the next image',
                 callback: function () {
-                    if ($scope.post.next_url) {
-                        $scope.changeView($scope.post.next_url.substring($scope.post.next_url.indexOf('/', 7)));
-                    }
+                    $scope.next();
                 }
             });
     })
