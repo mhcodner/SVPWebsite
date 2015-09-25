@@ -42,12 +42,12 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
                 templateUrl: baseThemeURI + '/partials/post.html',
                 controller: 'BlogPost'
             })
-            .when('/about/', {
-                templateUrl: baseThemeURI + '/partials/page.html',
-                controller: 'GetPage'
-            })
             .when('/contact/', {
                 templateUrl: baseThemeURI + '/partials/contact.html',
+                controller: 'GetPage'
+            })
+            .when('/:page/', {
+                templateUrl: baseThemeURI + '/partials/page.html',
                 controller: 'GetPage'
             })
             .otherwise({
