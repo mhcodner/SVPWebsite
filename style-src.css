@@ -424,7 +424,6 @@ header::before {
 @media only screen and (min-width: 1024px) {
     .title-container {
         position: absolute;
-        margin-left: 4%;
         pointer-events: none;
     }
 
