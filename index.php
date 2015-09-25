@@ -5,11 +5,7 @@
     <base href="/">
     <meta charset="utf-8">
     <title ng-bind="title">Sam Venn Photography</title>
-    <meta property="og:title" content="{{ title }}"/>
-    <meta property="og:type" content="article"/>
-    <meta property="og:image" content="http://128.199.107.48/wp-content/themes/SVPWebsite/img/SVP_Logo_sm.png"/>
-    <meta property="og:site_name" content="Sam Venn Photography"/>
-    <meta property="og:description" content="Photographer from Sydney"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
