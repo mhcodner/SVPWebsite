@@ -21,7 +21,7 @@
                 <img src="<?php echo get_template_directory_uri() ?>/img/SVP_Logo_sm.png" alt="Logo">
             </a>
         </div>
-        <div class="title">
+        <div class="title sr-only">
             <a href="/">
                 Sam Venn Photography
             </a>
@@ -30,7 +30,7 @@
 
     <nav class="cd-main-nav-wrapper hide-large">
         <ul ng-controller="MenuController" id="main-nav" class="cd-main-nav">
-            <li ng-repeat="item in menuItems" ><a ng-class="{ active:isActive(item.url) }" ng-href="{{ item.url }}">{{ item.title }}</a></li>
+            <li ng-repeat="item in menuItems" ><a ng-class="{ active:isActive(item.url) }" onclick="toggleCssClass()" ng-href="{{ item.url }}">{{ item.title }}</a></li>
         </ul>
     </nav>
 
