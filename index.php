@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <?php wp_head(); ?>
 </head>
-<body>
+<body ng-cloak>
 
 <header>
 
@@ -50,7 +50,7 @@
     </aside>
     <!-- main content here -->
     <div class="view-animate-container">
-        <div ng-view class="view-animate page-content" ng-cloak></div>
+        <div ng-view class="view-animate page-content"></div>
     </div>
 </main>
 
