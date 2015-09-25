@@ -1,4 +1,12 @@
 var baseThemeURI = themeSettings.themeUri;
+function arrayObjectIndexOf(arr, obj){
+    for(var i = 0; i < arr.length; i++){
+        if(angular.equals(arr[i], obj)){
+            return i;
+        }
+    }
+    return -1;
+}
 var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSanitize', 'angular-loading-bar', 'cfp.hotkeys'])
 /**
  *
@@ -269,19 +277,19 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
             $location.path(view); // path not hash
         };
 
-        $scope.escape = function() {
+        $scope.escape = function () {
             $scope.changeView('/gallery/category/' + $scope.category.slug);
         };
 
-        $scope.previous = function() {
-            if ($scope.post.previous_url) {
-                $scope.changeView($scope.post.previous_url.substring($scope.post.previous_url.indexOf('/', 7)));
+        $scope.previous = function () {
+            if ($scope.previous_slug) {
+                $scope.changeView('/gallery/' + $scope.previous_slug);
             }
         };
 
-        $scope.next = function() {
-            if ($scope.post.next_url) {
-                $scope.changeView($scope.post.next_url.substring($scope.post.next_url.indexOf('/', 7)));
+        $scope.next = function () {
+            if ($scope.next_slug) {
+                $scope.changeView('/gallery/' + $scope.next_slug);
             }
         };
 
@@ -293,18 +301,33 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
         if ($location.search().preview === 'true') {
             url += '&preview=true&preview_id=' + $location.search().preview_id + '&preview_nonce=' + $location.search().preview_nonce;
         }
+        var currentPost;
         $http.get(url, {cache: true})
             .success(function (data) {
                 $scope.post = data;
+                currentPost = data.post;
 
                 $scope.category = (data.post.categories[0].slug === 'featured') ? data.post.categories[1] : data.post.categories[0];
 
                 // Inject the title into the rootScope
                 $rootScope.title = data.post.title + ' - Sam Venn Photography';
+
+                $http.get('/api/get_posts/?category_name=' + $scope.category.slug + '&posts_per_page=-1', {cache: true}).success(function (data) {
+                    var categoryPosts = data.posts;
+                    var currentIndex = arrayObjectIndexOf(categoryPosts, currentPost);
+                    if (currentIndex + 1 <= categoryPosts.length -1) {
+                        $scope.next_slug = categoryPosts[currentIndex + 1].slug;
+                    }
+                    if (currentIndex > 0) {
+                        $scope.previous_slug = categoryPosts[currentIndex - 1].slug;
+                    }
+                });
             })
             .error(function () {
                 window.alert("We have been unable to access the feed :-(");
             });
+
+
 
         hotkeys.bindTo($scope)
             .add({

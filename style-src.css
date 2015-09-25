@@ -86,10 +86,11 @@ ul.category-list li {
 }
 
 .post-image {
-    width: 80%;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     position: relative;
+    transition: 0.3s width ease-in-out;
 }
 
 .post-image .overlay {
@@ -99,6 +100,12 @@ ul.category-list li {
     top: 0;
     left: 0;
     text-align: center;
+}
+
+@media (min-width: 1024px) {
+    .post-image {
+        width: 80%;
+    }
 }
 
 .overlay.left {
@@ -597,8 +604,18 @@ header::before {
     }
 
     .cd-main-nav li a:hover, .cd-main-nav a.active, aside.sidebar a.active, aside.sidebar a:hover {
-        border-bottom: 1px solid #333333;
         color: #333333;
+    }
+
+    .cd-main-nav a.active:before, aside.sidebar a.active:before {
+        content: "\f178";
+        font-family: FontAwesome;
+        font-style: normal;
+        font-weight: normal;
+        text-decoration: inherit;
+        /*--adjust as necessary--*/
+        font-size: 18px;
+        padding-right: 0.5em;
     }
 
     .cd-main-nav li ul {

@@ -24,6 +24,7 @@ if (!function_exists('samvennphoto_setup')) :
          */
         add_theme_support('post-thumbnails');
         set_post_thumbnail_size(400, 300, true);
+        add_theme_support( 'html5', array( 'gallery', 'caption' ) );
 
         remove_action('wp_head', 'wp_generator');
         remove_action('wp_head', 'wlwmanifest_link');

@@ -1,9 +1,9 @@
 <div ng-if="post.post.thumbnail_images.thumbnail.url" class="container-fluid">
     <div class="post-image">
         <img class="u-max-full-width" ng-src="{{ post.post.thumbnail_images.full.url }}"/>
-        <a ng-if="post.previous_url !== undefined" class="left overlay" href="{{ post.previous_url }}"></a>
+        <a ng-if="previous_slug !== undefined" class="left overlay" ng-click="previous()"></a>
         <div class="overlay middle" ng-click="escape()"></div>
-        <a ng-if="post.next_url !== undefined" class="right overlay" href="{{ post.next_url }}"></a>
+        <a ng-if="next_slug !== undefined" class="right overlay" ng-click="next()"></a>
     </div>
 </div>
 <div ng-if="!post.post.thumbnail_images.thumbnail.url" class="container">
