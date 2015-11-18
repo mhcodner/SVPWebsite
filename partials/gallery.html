@@ -4,6 +4,7 @@
             <div class="card">
                 <div class="card-image">
                     <a href="/gallery/{{post.slug}}"><img ng-src="{{ post.thumbnail_images.thumbnail.url != '' && post.thumbnail_images.thumbnail.url || defaultThumb }}" data-caption="{{ post.title }}" alt="{{ post.title }}"/></a>
+                    <span class="card-title" ng-if="!post.thumbnail_images.thumbnail.url">{{ post.title }}</span>
                 </div>
                 <div class="card-action">
                     <a href="/gallery/{{post.slug}}">

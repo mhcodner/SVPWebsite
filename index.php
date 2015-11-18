@@ -15,7 +15,7 @@
 
 <header>
 
-    <nav class="top-nav cyan darken-2">
+    <nav class="top-nav blue-grey darken-3">
         <div class="container">
             <div class="nav-wrapper">
                 <a class="page-title" ng-bind="title">Sam Venn Photography</a>
@@ -44,7 +44,7 @@
 </main>
 
 <footer class="page-footer" style="padding-top: 0;">
-    <div class="footer-copyright cyan darken-2">
+    <div class="footer-copyright blue-grey darken-3">
         <div class="container">
             &copy; <?php echo date("Y"); ?> Sam Venn Photography
             <div class="right" style="padding-top: 5px;">
