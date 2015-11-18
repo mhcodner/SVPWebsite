@@ -7,57 +7,54 @@
     <title ng-bind="title">Sam Venn Photography</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="<?php echo get_template_directory_uri() ?>/css/materialize.min.css"  media="screen,projection"/>
     <?php wp_head(); ?>
 </head>
 <body ng-cloak>
 
 <header>
 
-    <div class="title-container">
-        <div class="cd-logo">
-            <a href="/">
+    <nav class="top-nav">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a class="page-title" ng-bind="title">Sam Venn Photography</a>
+            </div>
+        </div>
+    </nav>
+    <a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i class="mdi-navigation-menu"></i></a>
+    <ul id="nav-mobile" class="side-nav fixed" style="left: 0;" ng-controller="MenuController">
+        <li class="logo">
+            <a href="/" id="logo-container" class="brand-logo">
                 <img src="<?php echo get_template_directory_uri() ?>/img/SVP_Logo_sm.png" alt="Logo">
             </a>
-        </div>
-        <div class="title sr-only">
-            <a href="/">
-                Sam Venn Photography
-            </a>
-        </div>
-    </div>
-
-    <nav class="cd-main-nav-wrapper hide-large">
-        <ul ng-controller="MenuController" id="main-nav" class="cd-main-nav">
-            <li ng-repeat="item in menuItems" ><a ng-class="{ active:isActive(item.url) }" onclick="toggleCssClass()" ng-href="{{ item.url }}">{{ item.title }}</a></li>
-        </ul>
-    </nav>
-
-    <a href="#" class="cd-nav-trigger">Menu<span></span></a>
+        </li>
+        <li class="bold" ng-repeat="item in menuItems">
+            <a class="waves-effect waves-teal" ng-class="{ active:isActive(item.url) }" ng-href="{{ item.url }}">{{ item.title }}</a>
+        </li>
+    </ul>
 
 </header>
 
-<main class="cd-main-content">
-    <aside class="sidebar hide-small">
-        <ul ng-controller="MenuController" class="side-nav">
-            <li ng-repeat="item in menuItems" ><a ng-class="{ active:isActive(item.url) }" ng-href="{{ item.url }}">{{ item.title }}</a></li>
-        </ul>
-    </aside>
+<main>
     <!-- main content here -->
     <div class="view-animate-container">
         <div ng-view class="view-animate page-content"></div>
     </div>
 </main>
 
-<footer>
-    <div class="container">
-        <hr/>
-        &copy; <?php echo date("Y"); ?> Sam Venn Photography
-        <div class="u-pull-right">
-            <a href="https://www.facebook.com/pages/Sam-Venn-Photography/311302692214440"><i
-                    class="fa fa-2x fa-facebook-square"></i></a>
-            <a href="https://instagram.com/samvennphotography/"><i class="fa fa-2x fa-instagram"></i></a>
+<footer class="page-footer" style="padding-top: 0;">
+    <div class="footer-copyright">
+        <div class="container">
+            &copy; <?php echo date("Y"); ?> Sam Venn Photography
+            <div class="right" style="padding-top: 5px;">
+                <a class="grey-text text-lighten-4" href="https://www.facebook.com/pages/Sam-Venn-Photography/311302692214440">
+                    <i class="fa fa-2x fa-facebook-square"></i>
+                </a>
+                <a class="grey-text text-lighten-4" href="https://instagram.com/samvennphotography/">
+                    <i class="fa fa-2x fa-instagram"></i>
+                </a>
+            </div>
         </div>
     </div>
 </footer>

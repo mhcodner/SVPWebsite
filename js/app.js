@@ -70,7 +70,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
  */
 
     .controller('404', function ($rootScope) {
-        $rootScope.title = '404 - Page not found - Sam Venn Photography';
+        $rootScope.title = '404 - Page not found';
     })
 
     .controller('MenuController', function ($scope, $location, $http) {
@@ -137,7 +137,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
     .controller('GetPage', function ($scope, $rootScope, $http, $location, $window) {
 
         $scope.$on('$viewContentLoaded', function (event) {
-            $window.ga('send', 'pageview', {page: $location.url()})
+            $window.ga('send', 'pageview', {page: $location.url()});
         });
 
         /**
@@ -149,7 +149,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
                 $scope.page = data.page;
 
                 // Inject the title into the rootScope
-                $rootScope.title = data.page.title + ' - Sam Venn Photography';
+                $rootScope.title = data.page.title;
             })
             .error(function () {
                 window.alert("We have been unable to access the feed :-(");
@@ -160,7 +160,8 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
     .controller('GetIndex', function ($scope, $rootScope, $http, $window, $location) {
 
         $scope.$on('$viewContentLoaded', function (event) {
-            $window.ga('send', 'pageview', {page: $location.url()})
+            $window.ga('send', 'pageview', {page: $location.url()});
+            initialise();
         });
 
         $rootScope.title = "Sam Venn Photography";
@@ -175,7 +176,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
     .controller('GalleryList', function ($scope, $rootScope, $http, $routeParams, $location, hotkeys, $window) {
 
         $scope.$on('$viewContentLoaded', function (event) {
-            $window.ga('send', 'pageview', {page: $location.url()})
+            $window.ga('send', 'pageview', {page: $location.url()});
         });
 
         $scope.defaultThumb = baseThemeURI + '/img/default-thumb.jpg';
@@ -188,7 +189,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
          *  Get posts from a specific category by passing in the slug
          */
         var url = '/api/get_posts?posts_per_page=12';
-        $rootScope.title = 'Gallery - Sam Venn Photography';
+        $rootScope.title = 'Gallery';
         /**
          *  Get the parameter passed into the controller (if it exists)
          *  and then construct the GET URL. If parameter exists, the user
@@ -310,7 +311,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
                 $scope.category = (data.post.categories[0].slug === 'featured') ? data.post.categories[1] : data.post.categories[0];
 
                 // Inject the title into the rootScope
-                $rootScope.title = data.post.title + ' - Sam Venn Photography';
+                $rootScope.title = data.post.title;
 
                 $http.get('/api/get_posts/?category_name=' + $scope.category.slug + '&posts_per_page=-1', {cache: true}).success(function (data) {
                     var categoryPosts = data.posts;
