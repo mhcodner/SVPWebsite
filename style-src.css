@@ -36,7 +36,6 @@ img {
 }
 
 .view-animate.ng-enter {
-    transition-delay: 0.3s;
     opacity: 0;
 }
 
@@ -67,12 +66,13 @@ nav.top-nav a.page-title {
 }
 
 nav .nav-wrapper {
-    text-align: center;
+    text-align: left;
 }
 
 li.logo {
     text-align: center;
-    margin-top: 13px;
+    padding-top: 13px;
+    padding-bottom: 13px;
 }
 
 ul.side-nav.fixed li.logo:hover {
@@ -95,7 +95,6 @@ ul.side-nav.fixed li a {
 
 #logo-container {
     height: 96px;
-    margin-bottom: 13px;
 }
 
 a.button-collapse.top-nav {
@@ -116,9 +115,25 @@ a.button-collapse.top-nav.full {
     line-height: 122px;
 }
 
+div.caption a {
+    color: #e4e4e4;
+}
+
+.spacer {
+    padding-top: 20px;
+}
+
+#slider {
+    margin-top: 20px;
+}
+
 @media (max-width: 992px) {
     header, main, footer {
         padding-left: 0;
+    }
+
+    nav .nav-wrapper {
+        text-align: center;
     }
 
     nav.top-nav {
@@ -132,5 +147,9 @@ a.button-collapse.top-nav.full {
 
     a.button-collapse.top-nav.full {
         line-height: 70px;
+    }
+
+    #slider {
+        margin-top: 0;
     }
 }

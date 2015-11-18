@@ -15,7 +15,7 @@
 
 <header>
 
-    <nav class="top-nav">
+    <nav class="top-nav cyan darken-2">
         <div class="container">
             <div class="nav-wrapper">
                 <a class="page-title" ng-bind="title">Sam Venn Photography</a>
@@ -24,7 +24,7 @@
     </nav>
     <a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i class="mdi-navigation-menu"></i></a>
     <ul id="nav-mobile" class="side-nav fixed" style="left: 0;" ng-controller="MenuController">
-        <li class="logo">
+        <li class="logo blue-grey lighten-2">
             <a href="/" id="logo-container" class="brand-logo">
                 <img src="<?php echo get_template_directory_uri() ?>/img/SVP_Logo_sm.png" alt="Logo">
             </a>
@@ -44,7 +44,7 @@
 </main>
 
 <footer class="page-footer" style="padding-top: 0;">
-    <div class="footer-copyright">
+    <div class="footer-copyright cyan darken-2">
         <div class="container">
             &copy; <?php echo date("Y"); ?> Sam Venn Photography
             <div class="right" style="padding-top: 5px;">

@@ -1,13 +1,19 @@
 <div class="container">
     <div class="row">
-        <div class="col s12 m6 l3" ng-repeat="post in posts.posts">
-            <div class="card">
-                <div class="card-image">
-                    <a href="/gallery/{{post.slug}}"><img ng-src="{{ post.thumbnail_images.thumbnail.url != '' && post.thumbnail_images.thumbnail.url || defaultThumb }}" data-caption="{{ post.title }}" alt="{{ post.title }}"/></a>
-                </div>
-                <div class="card-action">
-                    <a href="/gallery/{{post.slug}}">View Image</a>
-                </div>
+        <div class="col s12 l5 push-l7">
+            <blockquote class="flow-text" ng-bind="siteTagLine"></blockquote>
+        </div>
+        <div class="col s12 l7 pull-l5">
+            <div class="slider" id="slider">
+                <ul class="slides">
+                    <li ng-repeat="post in posts.posts" slider-initialise>
+                        <img class="responsive-img" ng-src="{{ post.thumbnail_images.thumbnail.url != '' && post.thumbnail_images.thumbnail.url || defaultThumb }}" alt="{{ post.title }}"/>
+                        <div class="caption" ng-random-class="alignment">
+                            <h3>{{ post.title }}</h3>
+                            <h5><a href="/gallery/{{post.slug}}"><i class="fa fa-expand"></i></a></h5>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

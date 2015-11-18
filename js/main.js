@@ -1,14 +1,22 @@
 jQuery(document).ready(function ($) {
     $('body').on('contextmenu', 'img, .post-image', function(e){ return false; });
-    initialise();
     $("body").on('click', 'ul.side-nav.fixed li a', function(){
-        console.log("Click");
         if ($( window ).width() <= 992) {
             $('.button-collapse').sideNav('hide');
         }
     });
     $(".button-collapse").sideNav();
+    $(window).resize(function() {
+       resizeSlider();
+    });
 });
-function initialise() {
+function initialiseSlider() {
+    $('#slider').slider({height: ($('#slider').width() * 0.75)});
+}
+function resizeSlider() {
+    $('#slider .slides').height($('#slider').width() * 0.75);
+    $('#slider').height($('#slider').width() * 0.75 + 40);
+}
+function initMaterialBox() {
     $('.materialboxed').materialbox();
 }

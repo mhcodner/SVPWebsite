@@ -152,7 +152,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
                 $rootScope.title = data.page.title;
             })
             .error(function () {
-                window.alert("We have been unable to access the feed :-(");
+                console.log("We have been unable to access the feed :-(");
             })
 
     })
@@ -161,12 +161,20 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
 
         $scope.$on('$viewContentLoaded', function (event) {
             $window.ga('send', 'pageview', {page: $location.url()});
-            initialise();
+            initialiseSlider();
         });
+
+        $scope.alignment = [
+            'left-align',
+            'center-align',
+            'right-align'
+        ];
 
         $rootScope.title = "Sam Venn Photography";
 
         $scope.defaultThumb = baseThemeURI + '/img/default-thumb.jpg';
+
+        $scope.siteTagLine = themeSettings.siteTagLine;
 
         $http.get('/api/get_posts/?category_name=featured&posts_per_page=12', {cache: true}).success(function (data) {
             $scope.posts = data;
@@ -237,7 +245,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
                 }
             })
             .error(function () {
-                window.alert("We have been unable to access the feed :-(");
+                console.log("We have been unable to access the feed :-(");
             });
 
         hotkeys.bindTo($scope)
@@ -325,7 +333,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
                 });
             })
             .error(function () {
-                window.alert("We have been unable to access the feed :-(");
+                console.log("We have been unable to access the feed :-(");
             });
 
 
@@ -363,7 +371,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
                 });
             })
             .error(function () {
-                window.alert("We have been unable to access the feed :-(");
+                console.log("We have been unable to access the feed :-(");
             });
 
 
@@ -372,4 +380,29 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
             return route === paths[paths.length - 2];
         }
 
+    })
+    .directive('sliderInitialise', function() {
+        return function(scope, element, attrs) {
+            if (scope.$last){
+                initialiseSlider();
+            }
+        };
+    })
+    .directive('materialboxInitialise', function() {
+        return function(scope, element, attrs) {
+            initMaterialBox();
+        };
+    })
+    .directive("ngRandomClass", function () {
+        return {
+            restrict: 'EA',
+            replace: false,
+            scope: {
+                ngClasses: "=ngRandomClass"
+            },
+            link: function (scope, elem, attr) {
+                //Add random background class to selected element
+                elem.addClass(scope.ngClasses[Math.floor(Math.random() * (scope.ngClasses.length))]);
+            }
+        }
     });

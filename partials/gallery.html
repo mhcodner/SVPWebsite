@@ -6,7 +6,10 @@
                     <a href="/gallery/{{post.slug}}"><img ng-src="{{ post.thumbnail_images.thumbnail.url != '' && post.thumbnail_images.thumbnail.url || defaultThumb }}" data-caption="{{ post.title }}" alt="{{ post.title }}"/></a>
                 </div>
                 <div class="card-action">
-                    <a href="/gallery/{{post.slug}}">View Image</a>
+                    <a href="/gallery/{{post.slug}}">
+                        <span ng-if="post.thumbnail_images.thumbnail.url">View Image</span>
+                        <span ng-if="!post.thumbnail_images.thumbnail.url">View Post</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -14,7 +17,7 @@
 </div>
 <div ng-show="paging.pages > 1" class="container">
     <div class="row">
-        <ul class="pagination">
+        <ul class="pagination center">
             <li>
                 <a class="button button-round u-pull-left" ng-show="prev > 0" ng-href="{{ prevLink }}">
                     <i class="fa fa-arrow-left"></i>

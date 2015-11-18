@@ -1,12 +1,9 @@
+<div class="spacer"></div>
 <div ng-if="post.post.thumbnail_images.thumbnail.url" class="container">
-    <img class="responsive-img" ng-src="{{ post.post.thumbnail_images.full.url }}"/>
+    <img class="responsive-img materialboxed" ng-src="{{ post.post.thumbnail_images.full.url }}" materialbox-initialise />
 </div>
 <div ng-if="!post.post.thumbnail_images.thumbnail.url" class="container">
     <div class="row">
-        <div class="post-content">
-            <h1 class="page-title">{{ post.post.title }}</h1>
-
-            <div ng-bind-html="post.post.content"></div>
-        </div>
+        <div class="flow-text" ng-bind-html="post.post.content"></div>
     </div>
 </div>

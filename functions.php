@@ -123,7 +123,8 @@ function js_vars() {
     <script>
         var themeSettings = {
             themeUri: '<?php echo get_template_directory_uri(); ?>',
-            siteURL: '<?php echo get_site_url(); ?>'
+            siteURL: '<?php echo get_site_url(); ?>',
+            siteTagLine: '<?php echo get_bloginfo('description'); ?>'
         };
     </script>
 <?php }
