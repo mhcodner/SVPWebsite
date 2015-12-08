@@ -1,13 +1,8 @@
-<div class="container">
-    <div class="row">
-        <div class="col s12">
-            <div class="owl-carousel owl-theme">
-                <div class="item" ng-repeat="post in posts" ng-style="setWidth(post)" slider-initialise>
-                    <img class="responsive-img" ng-src="{{ post.thumbnail_images.medium.url != '' && post.thumbnail_images.medium.url || defaultThumb }}" alt="{{ post.title }}"/>
-                    <h4><a ng-href="{{ post.url }}">{{ post.title }}</a></h4>
-                </div>
-            </div>
-        </div>
+<div class="spacer"></div>
+<div class="owl-carousel owl-theme">
+    <div class="item" ng-repeat="post in posts" ng-style="setWidth(post)" slider-initialise>
+        <img class="responsive-img" ng-src="{{ post.thumbnail_images.medium.url != '' && post.thumbnail_images.medium.url || defaultThumb }}" alt="{{ post.title }}"/>
+        <h5><a ng-href="{{ post.url }}">{{ post.title }}</a></h5>
     </div>
 </div>
 <div ng-show="paging.pages > 1" class="container">
