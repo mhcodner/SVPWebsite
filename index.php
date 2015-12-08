@@ -18,13 +18,15 @@
     <nav class="transparent z-depth-0">
         <div class="nav-wrapper">
             <div class="container">
-                <a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only black-text"><i class="mdi-navigation-menu"></i></a>
+                <a href="#" data-activates="nav-mobile" class="button-collapse hide-on-large-only black-text"><i class="mdi-navigation-menu"></i></a>
                 <a href="/" class="brand-logo">
                     <img src="<?php echo get_template_directory_uri() ?>/img/SVP_Logo_sm.png" alt="Logo">
                 </a>
-                <ul class="right hide-on-med-and-down" ng-controller="MenuController">
-                    <li ng-repeat="item in menuItems" ng-class="{ active:isActive(item.url) }"><a class="black-text" ng-href="{{ item.url }}">{{ item.title }}</a></li>
-                </ul>
+                <div class="top-nav">
+                    <ul class="right hide-on-med-and-down" ng-controller="MenuController">
+                        <li ng-repeat="item in menuItems" ng-class="{ active:isActive(item.url) }"><a class="black-text" ng-href="{{ item.url }}">{{ item.title }}</a></li>
+                    </ul>
+                </div>
                 <ul id="nav-mobile" class="side-nav" ng-controller="MenuController">
                     <li ng-repeat="item in menuItems"><a class="waves-effect waves-teal" ng-class="{ active:isActive(item.url) }" ng-href="{{ item.url }}">{{ item.title }}</a></li>
                 </ul>

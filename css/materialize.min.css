@@ -7221,7 +7221,7 @@ nav ul li {
     padding: 0
 }
 
-nav ul li:hover, nav ul li.active {
+nav ul li.active {
     font-weight: bold;
 }
 
