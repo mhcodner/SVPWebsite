@@ -124,6 +124,7 @@ function js_vars() {
         var themeSettings = {
             themeUri: '<?php echo get_template_directory_uri(); ?>',
             siteURL: '<?php echo get_site_url(); ?>',
+            siteTitle: '<?php echo get_bloginfo('name') ?>',
             siteTagLine: '<?php echo get_bloginfo('description'); ?>'
         };
     </script>

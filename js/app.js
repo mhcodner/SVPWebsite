@@ -163,7 +163,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
             $window.ga('send', 'pageview', {page: $location.url()});
         });
 
-        $rootScope.title = "Sam Venn Photography";
+        $rootScope.title = themeSettings.siteTitle;
 
         $scope.defaultThumb = baseThemeURI + '/img/default-thumb.jpg';
 

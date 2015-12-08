@@ -34,7 +34,7 @@
 </header>
 
 <main>
-    <div class="container">
+    <div ng-hide="!title" class="container">
         <h1><a class="black-text" ng-bind="title">Sam Venn Photography</a></h1>
     </div>
     <!-- main content here -->
@@ -43,15 +43,15 @@
     </div>
 </main>
 
-<footer class="page-footer" style="padding-top: 0;">
-    <div class="footer-copyright blue-grey darken-3">
+<footer class="page-footer transparent" style="padding-top: 0;">
+    <div class="footer-copyright transparent">
         <div class="container">
-            &copy; <?php echo date("Y"); ?> Sam Venn Photography
+            <span class="grey-text darken-3">&copy; <?php echo date("Y"); ?> Sam Venn Photography</span>
             <div class="right" style="padding-top: 5px;">
-                <a class="grey-text text-lighten-4" href="https://www.facebook.com/pages/Sam-Venn-Photography/311302692214440">
+                <a class="grey-text darken-3" href="https://www.facebook.com/pages/Sam-Venn-Photography/311302692214440">
                     <i class="fa fa-2x fa-facebook-square"></i>
                 </a>
-                <a class="grey-text text-lighten-4" href="https://instagram.com/samvennphotography/">
+                <a class="grey-text darken-3" href="https://instagram.com/samvennphotography/">
                     <i class="fa fa-2x fa-instagram"></i>
                 </a>
             </div>
