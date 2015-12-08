@@ -7,6 +7,36 @@ jQuery(document).ready(function ($) {
             $('.button-collapse').sideNav('hide');
         }
     });
+    $(window).resize(function(){
+        if ($(window).width() <= 992) {
+            $('.owl-carousel img').each(function() {
+                var img = $(this); // Get my img elem
+                var image_ratio;
+                $("<img/>") // Make in memory copy of image to avoid css issues
+                    .attr("src", $(img).attr("src"))
+                    .load(function() {
+                        var pic_real_width = this.width;   // Note: $(this).width() will not
+                        var pic_real_height = this.height; // work for in memory images.
+                        image_ratio = pic_real_width / pic_real_height;
+                        img.parent().css("width", Math.round(image_ratio * 300) + "px");
+                    });
+            });
+        }
+        else {
+            $('.owl-carousel img').each(function() {
+                var img = $(this); // Get my img elem
+                var image_ratio;
+                $("<img/>") // Make in memory copy of image to avoid css issues
+                    .attr("src", $(img).attr("src"))
+                    .load(function() {
+                        var pic_real_width = this.width;   // Note: $(this).width() will not
+                        var pic_real_height = this.height; // work for in memory images.
+                        image_ratio = pic_real_width / pic_real_height;
+                        img.parent().css("width", Math.round(image_ratio * 500) + "px");
+                    });
+            });
+        }
+    });
     $(".button-collapse").sideNav();
 });
 function initialiseSlider() {

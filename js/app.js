@@ -157,7 +157,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
 
     })
 
-    .controller('GetIndex', function ($scope, $rootScope, $http, $window, $location) {
+    .controller('GetIndex', function ($scope, $rootScope, $http, $window, $location, hotkeys) {
 
         $scope.$on('$viewContentLoaded', function (event) {
             $window.ga('send', 'pageview', {page: $location.url()});
@@ -171,12 +171,28 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
 
         $scope.setWidth = function(post){
             width = (post.thumbnail_images.medium.width / post.thumbnail_images.medium.height) * 500;
-            return { width: width + 'px' };
+            return { width: Math.round(width) + 'px' };
         };
 
         $http.get('/api/get_posts/?category_name=featured&posts_per_page=12', {cache: true}).success(function (data) {
             $scope.posts = data;
         });
+
+        hotkeys.bindTo($scope)
+            .add({
+                combo: 'left',
+                description: 'Previous image',
+                callback: function() {
+                    $('.owl-carousel').trigger('prev.owl.carousel');
+                }
+            })
+            .add({
+                combo: 'right',
+                description: 'Next image',
+                callback: function() {
+                    $('.owl-carousel').trigger('next.owl.carousel');
+                }
+            });
     })
 
     .controller('GalleryList', function ($scope, $rootScope, $http, $routeParams, $location, hotkeys, $window) {
@@ -200,7 +216,6 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
          *  Get posts from a specific category by passing in the slug
          */
         var url = '/api/get_posts?posts_per_page=-1';
-        $rootScope.title = 'Gallery';
         /**
          *  Get the parameter passed into the controller (if it exists)
          *  and then construct the GET URL. If parameter exists, the user
@@ -246,6 +261,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
                     $scope.prevLink = '/gallery/category/' + $routeParams.category + '/page/' + $scope.prev;
                 }
                 else {
+                    $rootScope.title = 'Gallery';
                     $scope.nextLink = '/gallery/page/' + $scope.next;
                     $scope.prevLink = '/gallery/page/' + $scope.prev;
                 }
@@ -260,6 +276,20 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
                 description: 'Remove category filter',
                 callback: function () {
                     $scope.changeView('/gallery/');
+                }
+            })
+            .add({
+                combo: 'left',
+                description: 'Previous image',
+                callback: function() {
+                    $('.owl-carousel').trigger('prev.owl.carousel');
+                }
+            })
+            .add({
+                combo: 'right',
+                description: 'Next image',
+                callback: function() {
+                    $('.owl-carousel').trigger('next.owl.carousel');
                 }
             });
     })
