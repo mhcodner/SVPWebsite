@@ -14,7 +14,7 @@
 
 <header>
 
-    <nav class="transparent">
+    <nav class="transparent z-depth-0">
         <div class="nav-wrapper">
             <div class="container">
                 <a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only black-text"><i class="mdi-navigation-menu"></i></a>
