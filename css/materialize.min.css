@@ -7217,17 +7217,12 @@ nav ul {
 }
 
 nav ul li {
-    -webkit-transition: background-color .3s;
-    -moz-transition: background-color .3s;
-    -o-transition: background-color .3s;
-    -ms-transition: background-color .3s;
-    transition: background-color .3s;
     float: left;
     padding: 0
 }
 
 nav ul li:hover, nav ul li.active {
-    background-color: rgba(0, 0, 0, 0.1)
+    font-weight: bold;
 }
 
 nav ul a {

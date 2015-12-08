@@ -1,10 +1,4 @@
-<div class="container">
-    <div class="row">
-        <div class="col s12">
-            <blockquote ng-hide="!siteTagLine" class="flow-text" ng-bind="siteTagLine"></blockquote>
-        </div>
-    </div>
-</div>
+<div class="double-spacer"></div>
 <div class="owl-carousel owl-theme">
     <div class="item" ng-repeat="post in posts.posts" ng-style="setWidth(post)" slider-initialise>
         <img class="responsive-img" ng-src="{{ post.thumbnail_images.medium.url != '' && post.thumbnail_images.medium.url || defaultThumb }}" alt="{{ post.title }}"/>
