@@ -15,14 +15,15 @@ body {
 
 main {
     flex: 1 0 auto;
-}
-
-header, main, footer {
-    padding-left: 240px;
+    padding-top: 30px;
 }
 
 a {
     outline: 0;
+}
+
+h1 {
+    margin: 2.1rem 0 0;
 }
 
 img {
@@ -56,64 +57,8 @@ img {
     display: none !important;
 }
 
-nav.top-nav {
-    height: 122px;
-    box-shadow: none;
-}
-
-nav.top-nav a.page-title {
-    line-height: 122px;
-    font-size: 48px;
-}
-
-nav .nav-wrapper {
-    text-align: left;
-}
-
-li.logo {
-    text-align: center;
-    padding-top: 13px;
-    padding-bottom: 13px;
-}
-
-ul.side-nav.fixed li.logo:hover {
-    background-color: transparent;
-}
-
-ul.side-nav.fixed li {
-    line-height: 44px;
-}
-
-ul.side-nav.fixed li a {
-    font-size: 13px;
-    line-height: 44px;
-    height: 44px;
-}
-
 .bold > a {
     font-weight: bold;
-}
-
-#logo-container {
-    height: 96px;
-}
-
-a.button-collapse.top-nav {
-    position: absolute;
-    text-align: center;
-    height: 48px;
-    width: 48px;
-    left: 7.5%;
-    top: 0;
-    float: none;
-    margin-left: 1.5rem;
-    color: #FFF;
-    font-size: 32px;
-    z-index: 2;
-}
-
-a.button-collapse.top-nav.full {
-    line-height: 122px;
 }
 
 div.caption a {

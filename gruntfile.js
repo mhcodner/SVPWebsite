@@ -9,7 +9,10 @@ module.exports = function (grunt) {
                     'style.css': [
                         'style-src.css',
                         'css/loading-bar.css',
-                        'css/hotkeys.min.css'
+                        'css/hotkeys.min.css',
+                        'css/materialize.min.css',
+                        'css/owl.carousel.min.css',
+                        'css/owl.theme.default.min.css'
                     ]
                 }
             }
@@ -30,6 +33,7 @@ module.exports = function (grunt) {
                     'js/vendor/loading-bar.js',
                     'js/vendor/hotkeys.min.js',
                     'js/vendor/materialize.min.js',
+                    'js/vendor/owl.carousel.min.js',
                     'js/app.js',
                     'js/main.js'
                 ],

@@ -161,20 +161,18 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
 
         $scope.$on('$viewContentLoaded', function (event) {
             $window.ga('send', 'pageview', {page: $location.url()});
-            initialiseSlider();
         });
-
-        $scope.alignment = [
-            'left-align',
-            'center-align',
-            'right-align'
-        ];
 
         $rootScope.title = "Sam Venn Photography";
 
         $scope.defaultThumb = baseThemeURI + '/img/default-thumb.jpg';
 
         $scope.siteTagLine = themeSettings.siteTagLine;
+
+        $scope.setWidth = function(post){
+            width = (post.thumbnail_images.medium.width / post.thumbnail_images.medium.height) * 500;
+            return { width: width + 'px' };
+        };
 
         $http.get('/api/get_posts/?category_name=featured&posts_per_page=12', {cache: true}).success(function (data) {
             $scope.posts = data;
@@ -382,11 +380,15 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
 
     })
     .directive('sliderInitialise', function() {
-        return function(scope, element, attrs) {
-            if (scope.$last){
-                initialiseSlider();
+        return {
+            restrict: 'A',
+            transclude: false,
+            link: function(scope) {
+                if (scope.$last){
+                    initialiseSlider();
+                }
             }
-        };
+        }
     })
     .directive('materialboxInitialise', function() {
         return function(scope, element, attrs) {

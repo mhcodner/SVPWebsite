@@ -1,19 +1,13 @@
 <div class="container">
     <div class="row">
-        <div class="col s12 l3 push-l9">
+        <div class="col s12">
             <blockquote class="flow-text" ng-bind="siteTagLine"></blockquote>
         </div>
-        <div class="col s12 l9 pull-l3">
-            <div class="slider" id="slider">
-                <ul class="slides">
-                    <li ng-repeat="post in posts.posts" slider-initialise>
-                        <img class="responsive-img" ng-src="{{ post.thumbnail_images.thumbnail.url != '' && post.thumbnail_images.thumbnail.url || defaultThumb }}" alt="{{ post.title }}"/>
-                        <div class="caption" ng-random-class="alignment">
-                            <h3>{{ post.title }}</h3>
-                            <h5><a href="/gallery/{{post.slug}}"><i class="fa fa-expand"></i></a></h5>
-                        </div>
-                    </li>
-                </ul>
+        <div class="col s12">
+            <div class="owl-carousel owl-theme">
+                <div class="item" ng-repeat="post in posts.posts" ng-style="setWidth(post)" slider-initialise>
+                    <img class="responsive-img" ng-src="{{ post.thumbnail_images.medium.url != '' && post.thumbnail_images.medium.url || defaultThumb }}" alt="{{ post.title }}"/>
+                </div>
             </div>
         </div>
     </div>
