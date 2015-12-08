@@ -8,6 +8,7 @@ jQuery(document).ready(function ($) {
         }
     });
     $(window).resize(function(){
+        setCaptionWidth();
         if ($(window).width() <= 992) {
             $('.owl-carousel img').each(function() {
                 var img = $(this); // Get my img elem
@@ -39,6 +40,16 @@ jQuery(document).ready(function ($) {
     });
     $(".button-collapse").sideNav();
 });
+function setCaptionWidth() {
+    $('.owl-theme .item h5').each(function() {
+        if ($(this).width() > $(window).width()) {
+            $(this).width($(window).width());
+        }
+        else {
+            $(this).width('');
+        }
+    });
+}
 function initialiseSlider() {
     setTimeout(function(){
         var owl = $('.owl-carousel');
@@ -54,7 +65,8 @@ function initialiseSlider() {
             nav: true,
             dots: false,
             navText: ['<i class="fa fa-chevron-left"></i>', '<i class="fa fa-chevron-right"></i>']
-        })
+        });
+        setCaptionWidth()
     }, 100);
 }
 function initMaterialBox() {

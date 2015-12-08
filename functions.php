@@ -125,7 +125,8 @@ function js_vars() {
             themeUri: '<?php echo get_template_directory_uri(); ?>',
             siteURL: '<?php echo get_site_url(); ?>',
             siteTitle: '<?php echo get_bloginfo('name') ?>',
-            siteTagLine: '<?php echo get_bloginfo('description'); ?>'
+            siteTagLine: '<?php echo get_bloginfo('description'); ?>',
+            carouselHeight: [500, 200]
         };
     </script>
 <?php }

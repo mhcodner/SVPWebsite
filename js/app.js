@@ -170,7 +170,8 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
         $scope.siteTagLine = themeSettings.siteTagLine;
 
         $scope.setWidth = function(post){
-            width = (post.thumbnail_images.medium.width / post.thumbnail_images.medium.height) * 500;
+            var height = $(window).width() > 992 ? themeSettings.carouselHeight[0] : themeSettings.carouselHeight[1];
+            width = (post.thumbnail_images.medium.width / post.thumbnail_images.medium.height) * height;
             return { width: Math.round(width) + 'px' };
         };
 
@@ -208,7 +209,8 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
         };
 
         $scope.setWidth = function(post){
-            width = (post.thumbnail_images.medium.width / post.thumbnail_images.medium.height) * 500;
+            var height = $(window).width() > 992 ? themeSettings.carouselHeight[0] : themeSettings.carouselHeight[1];
+            width = (post.thumbnail_images.medium.width / post.thumbnail_images.medium.height) * height;
             return { width: width + 'px' };
         };
 
