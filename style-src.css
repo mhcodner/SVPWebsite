@@ -32,6 +32,10 @@ img {
     -webkit-touch-callout: none;
 }
 
+img.post-image:not(.active) {
+    max-height: 700px;
+}
+
 .view-animate {
     transition: all 0.3s ease-in-out;
 }
@@ -61,41 +65,12 @@ img {
     font-weight: bold;
 }
 
-div.caption a {
-    color: #e4e4e4;
-}
-
 .spacer {
     padding-top: 20px;
 }
 
-#slider {
-    margin-top: 20px;
-}
-
 @media (max-width: 992px) {
-    header, main, footer {
-        padding-left: 0;
-    }
-
     nav .nav-wrapper {
         text-align: center;
-    }
-
-    nav.top-nav {
-        height: 70px;
-    }
-
-    nav.top-nav a.page-title {
-        line-height: 70px;
-        font-size: 24px;
-    }
-
-    a.button-collapse.top-nav.full {
-        line-height: 70px;
-    }
-
-    #slider {
-        margin-top: 0;
     }
 }

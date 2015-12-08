@@ -32,8 +32,8 @@ module.exports = function (grunt) {
                     'js/vendor/angular-resource.min.js',
                     'js/vendor/loading-bar.js',
                     'js/vendor/hotkeys.min.js',
-                    'js/vendor/materialize.min.js',
                     'js/vendor/owl.carousel.min.js',
+                    'js/vendor/materialize.min.js',
                     'js/app.js',
                     'js/main.js'
                 ],

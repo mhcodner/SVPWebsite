@@ -1,16 +1,10 @@
 <div class="container">
     <div class="row">
-        <div class="col s12 m6 l3" ng-repeat="post in posts">
-            <div class="card">
-                <div class="card-image">
-                    <a href="/gallery/{{post.slug}}"><img ng-src="{{ post.thumbnail_images.thumbnail.url != '' && post.thumbnail_images.thumbnail.url || defaultThumb }}" data-caption="{{ post.title }}" alt="{{ post.title }}"/></a>
-                    <span class="card-title" ng-if="!post.thumbnail_images.thumbnail.url">{{ post.title }}</span>
-                </div>
-                <div class="card-action">
-                    <a href="/gallery/{{post.slug}}">
-                        <span ng-if="post.thumbnail_images.thumbnail.url">View Image</span>
-                        <span ng-if="!post.thumbnail_images.thumbnail.url">View Post</span>
-                    </a>
+        <div class="col s12">
+            <div class="owl-carousel owl-theme">
+                <div class="item" ng-repeat="post in posts" ng-style="setWidth(post)" slider-initialise>
+                    <img class="responsive-img" ng-src="{{ post.thumbnail_images.medium.url != '' && post.thumbnail_images.medium.url || defaultThumb }}" alt="{{ post.title }}"/>
+                    <h4><a ng-href="{{ post.url }}">{{ post.title }}</a></h4>
                 </div>
             </div>
         </div>

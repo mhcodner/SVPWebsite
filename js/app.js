@@ -191,10 +191,15 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
             $location.path(view); // path not hash
         };
 
+        $scope.setWidth = function(post){
+            width = (post.thumbnail_images.medium.width / post.thumbnail_images.medium.height) * 500;
+            return { width: width + 'px' };
+        };
+
         /**
          *  Get posts from a specific category by passing in the slug
          */
-        var url = '/api/get_posts?posts_per_page=12';
+        var url = '/api/get_posts?posts_per_page=-1';
         $rootScope.title = 'Gallery';
         /**
          *  Get the parameter passed into the controller (if it exists)
@@ -215,7 +220,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
         $scope.page = 1;
         // Set a default next value
         $scope.next = 2;
-        $http.get(url)
+        $http.get(url, {cache: true})
             .success(function (data) {
                 /**
                  *  Pass data from the feed to the view.
@@ -234,6 +239,9 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
                 }
 
                 if ($routeParams.category) {
+                    $http.get('/api/get_category_posts/?slug=' + $routeParams.category, {cache: true}).success(function(data) {
+                        $rootScope.title = data.category.title;
+                    });
                     $scope.nextLink = '/gallery/category/' + $routeParams.category + '/page/' + $scope.next;
                     $scope.prevLink = '/gallery/category/' + $routeParams.category + '/page/' + $scope.prev;
                 }
@@ -252,24 +260,6 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
                 description: 'Remove category filter',
                 callback: function () {
                     $scope.changeView('/gallery/');
-                }
-            })
-            .add({
-                combo: 'left',
-                description: 'Navigate to previous page',
-                callback: function () {
-                    if ($scope.prevLink) {
-                        $scope.changeView($scope.prevLink);
-                    }
-                }
-            })
-            .add({
-                combo: 'right',
-                description: 'Navigate to next page',
-                callback: function () {
-                    if ($scope.nextLink) {
-                        $scope.changeView($scope.nextLink);
-                    }
                 }
             });
     })

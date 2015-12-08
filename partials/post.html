@@ -1,6 +1,6 @@
 <div class="spacer"></div>
 <div ng-if="post.post.thumbnail_images.thumbnail.url" class="container">
-    <img class="responsive-img materialboxed" ng-src="{{ post.post.thumbnail_images.full.url }}" materialbox-initialise />
+    <img id="post-image" class="responsive-img materialboxed post-image" ng-src="{{ post.post.thumbnail_images.full.url }}" materialbox-initialise />
 </div>
 <div ng-if="!post.post.thumbnail_images.thumbnail.url" class="container">
     <div class="row">

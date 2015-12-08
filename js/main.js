@@ -11,15 +11,21 @@ jQuery(document).ready(function ($) {
 });
 function initialiseSlider() {
     setTimeout(function(){
-        $('.owl-carousel').owlCarousel({
+        var owl = $('.owl-carousel');
+        if(typeof owl.data('owlCarousel') != 'undefined'){
+            owl.data('owlCarousel').destroy();
+            owl.removeClass('owl-carousel');
+        }
+        owl.owlCarousel({
             margin: 0,
             loop: true,
             autoWidth: true,
-            items: 4,
+            items: 2,
             nav: true,
-            dots: false
+            dots: false,
+            navText: ['<i class="fa fa-chevron-left"></i>', '<i class="fa fa-chevron-right"></i>']
         })
-    }, 1);
+    }, 100);
 }
 function initMaterialBox() {
     $('.materialboxed').materialbox();
