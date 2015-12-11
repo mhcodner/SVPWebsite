@@ -26,6 +26,12 @@ h1 {
     margin: 2.1rem 0 0;
 }
 
+::-webkit-scrollbar { display: none; }
+html {
+    -ms-overflow-style: none;
+    overflow-y: scroll;
+}
+
 img {
     -ms-interpolation-mode: bicubic;
     -webkit-user-select: none;
