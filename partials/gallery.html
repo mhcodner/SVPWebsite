@@ -1,31 +1,27 @@
-<div class="container">
-    <div ng-controller="CategoryList">
-        <h3>Categories</h3>
-        <ul class="category-list">
-            <li ng-repeat="category in categories">
-                <a class="button" ng-class="{ 'button-primary':isCurrent(category.slug) }"
-                   href="/gallery/category/{{ category.slug }}">{{ category.title }}</a>
-            </li>
-        </ul>
-    </div>
+<div ng-hide="!title" class="container">
+    <h1><a class="black-text" ng-bind="title">Sam Venn Photography</a></h1>
 </div>
-<div class="container-fluid">
-    <div class="row">
-        <a ng-repeat="post in posts" class="masonry-image" href="/gallery/{{post.slug}}">
-            <img ng-src="{{ post.thumbnail_images.thumbnail.url != '' && post.thumbnail_images.thumbnail.url || defaultThumb }}" alt="{{ post.title }}"/>
-        </a>
+<div class="spacer"></div>
+<div class="owl-carousel owl-theme">
+    <div class="item" ng-repeat="post in posts" ng-style="setWidth(post)" slider-initialise>
+        <img class="responsive-img" ng-src="{{ post.thumbnail_images.medium.url != '' && post.thumbnail_images.medium.url || defaultThumb }}" alt="{{ post.title }}"/>
+        <h5><a ng-href="{{ post.url }}">{{ post.title }}</a></h5>
     </div>
 </div>
 <div ng-show="paging.pages > 1" class="container">
     <div class="row">
-        <div class="paging-text">
-            <a class="button button-round u-pull-left" ng-show="prev > 0" ng-href="{{ prevLink }}">
-                <i class="fa fa-arrow-left"></i> Previous
-            </a>
-            <span class="hide-small">Page {{ page }} of {{paging.pages}}</span>
-            <a class="button button-round u-pull-right" ng-show="next <= paging.pages" ng-href="{{ nextLink }}">
-                Next <i class="fa fa-arrow-right"></i>
-            </a>
-        </div>
+        <ul class="pagination center">
+            <li>
+                <a class="button button-round u-pull-left" ng-show="prev > 0" ng-href="{{ prevLink }}">
+                    <i class="fa fa-arrow-left"></i>
+                </a>
+            </li>
+            <li class="active"><a>{{ page }}</a></li>
+            <li>
+                <a class="button button-round u-pull-right" ng-show="next <= paging.pages" ng-href="{{ nextLink }}">
+                    <i class="fa fa-arrow-right"></i>
+                </a>
+            </li>
+        </ul>
     </div>
 </div>

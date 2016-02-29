@@ -5,67 +5,56 @@
     <base href="/">
     <meta charset="utf-8">
     <title ng-bind="title">Sam Venn Photography</title>
-    <meta property="og:title" content="{{ title }}"/>
-    <meta property="og:type" content="article"/>
-    <meta property="og:image" content="http://128.199.107.48/wp-content/themes/SVPWebsite/img/SVP_Logo_sm.png"/>
-    <meta property="og:site_name" content="Sam Venn Photography"/>
-    <meta property="og:description" content="Photographer from Sydney"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700' rel='stylesheet' type='text/css'>
     <?php wp_head(); ?>
 </head>
-<body>
+<body ng-cloak>
 
 <header>
 
-    <div class="title-container">
-        <div class="cd-logo">
-            <a href="/">
-                <img src="<?php echo get_template_directory_uri() ?>/img/SVP_Logo_sm.png" alt="Logo">
-            </a>
+    <nav class="transparent z-depth-0">
+        <div class="nav-wrapper">
+            <div class="container">
+                <a href="#" data-activates="nav-mobile" class="button-collapse hide-on-large-only black-text"><i class="mdi-navigation-menu"></i></a>
+                <a href="/" class="brand-logo">
+                    <img src="<?php echo get_template_directory_uri() ?>/img/SVP_Logo_sm.png" alt="Logo">
+                </a>
+                <div class="top-nav">
+                    <ul class="right hide-on-med-and-down" ng-controller="MenuController">
+                        <li ng-repeat="item in menuItems" ng-class="{ active:isActive(item.url) }"><a class="black-text" ng-href="{{ item.url }}">{{ item.title }}</a></li>
+                    </ul>
+                </div>
+                <ul id="nav-mobile" class="side-nav" ng-controller="MenuController">
+                    <li ng-repeat="item in menuItems"><a class="waves-effect waves-teal" ng-class="{ active:isActive(item.url) }" ng-href="{{ item.url }}">{{ item.title }}</a></li>
+                </ul>
+            </div>
         </div>
-        <div class="title">
-            <a href="/">
-                Sam Venn Photography
-            </a>
-        </div>
-    </div>
-
-    <nav class="cd-main-nav-wrapper">
-        <ul ng-controller="MenuController" class="cd-main-nav">
-            <li><a ng-class="{ active:isActive('/') }" href="/">Home</a></li>
-            <li class="hide-large"><a ng-class="{ active:isActive('/about/') }" href="/about">About</a></li>
-            <li><a ng-class="{ active:isActive('/contact/') }" href="/contact">Contact</a></li>
-            <li class="hide-large"><a ng-class="{ active:isActive('/gallery/') }" href="/gallery">Gallery</a></li>
-        </ul>
     </nav>
-
-    <a href="#" class="cd-nav-trigger">Menu<span></span></a>
 
 </header>
 
-<main class="cd-main-content">
-    <aside class="sidebar hide-small">
-        <ul ng-controller="MenuController" class="side-nav">
-            <li><a ng-class="{ active:isActive('/about/') }" href="/about">About</a></li>
-            <li><a ng-class="{ active:isActive('/gallery/') }" href="/gallery">Gallery</a></li>
-        </ul>
-    </aside>
+<main>
     <!-- main content here -->
     <div class="view-animate-container">
-        <div ng-view class="view-animate page-content" ng-cloak></div>
+        <div ng-view class="view-animate page-content"></div>
     </div>
 </main>
 
-<footer>
-    <div class="container">
-        <hr/>
-        &copy; <?php echo date("Y"); ?> Sam Venn Photography
-        <div class="u-pull-right">
-            <a href="https://www.facebook.com/pages/Sam-Venn-Photography/311302692214440"><i
-                    class="fa fa-2x fa-facebook-square"></i></a>
-            <a href="https://instagram.com/samvennphotography/"><i class="fa fa-2x fa-instagram"></i></a>
+<footer class="page-footer transparent" style="padding-top: 0;">
+    <div class="footer-copyright transparent">
+        <div class="container">
+            <span class="grey-text darken-3">&copy; <?php echo date("Y"); ?> Sam Venn Photography</span>
+            <div class="right" style="padding-top: 5px;">
+                <a class="grey-text darken-3" href="https://www.facebook.com/pages/Sam-Venn-Photography/311302692214440">
+                    <i class="fa fa-2x fa-facebook-square"></i>
+                </a>
+                <a class="grey-text darken-3" href="https://instagram.com/samvennphotography/">
+                    <i class="fa fa-2x fa-instagram"></i>
+                </a>
+            </div>
         </div>
     </div>
 </footer>

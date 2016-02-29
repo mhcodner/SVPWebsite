@@ -20,7 +20,7 @@ function makePage($data)
 {
     global $API_URL;
 
-    if (chop($API_URL, "?json=1") === 'http://' . $_SERVER['SERVER_NAME'] . '/') {
+    if (chop($API_URL, $_GET['slug'] . "?json=1") === 'http://' . $_SERVER['SERVER_NAME'] . '/') {
         $pageUrl = 'http://' . $_SERVER['SERVER_NAME'] . '/';
         $pageTitle = 'Sam Venn Photography';
         $metaDescription = 'Photographer from Sydney';

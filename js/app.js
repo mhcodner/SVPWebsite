@@ -1,4 +1,12 @@
-var baseThemeURI = '/wp-content/themes/SVPWebsite';
+var baseThemeURI = themeSettings.themeUri;
+function arrayObjectIndexOf(arr, obj){
+    for(var i = 0; i < arr.length; i++){
+        if(angular.equals(arr[i], obj)){
+            return i;
+        }
+    }
+    return -1;
+}
 var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSanitize', 'angular-loading-bar', 'cfp.hotkeys'])
 /**
  *
@@ -34,12 +42,12 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
                 templateUrl: baseThemeURI + '/partials/post.html',
                 controller: 'BlogPost'
             })
-            .when('/about/', {
-                templateUrl: baseThemeURI + '/partials/page.html',
-                controller: 'GetPage'
-            })
             .when('/contact/', {
                 templateUrl: baseThemeURI + '/partials/contact.html',
+                controller: 'GetPage'
+            })
+            .when('/:page/', {
+                templateUrl: baseThemeURI + '/partials/page.html',
                 controller: 'GetPage'
             })
             .otherwise({
@@ -62,13 +70,26 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
  */
 
     .controller('404', function ($rootScope) {
-        $rootScope.title = '404 - Page not found - Sam Venn Photography';
+        $rootScope.title = '404 - Page not found';
     })
 
-    .controller('MenuController', function ($scope, $location) {
+    .controller('MenuController', function ($scope, $location, $http) {
         $scope.isActive = function (route) {
-            return route === $location.path();
+            return route.replace(themeSettings.siteURL, '') === $location.path();
         };
+
+        $http.get('/api/menu/get_menu/').
+            then(function (response) {
+                $scope.menuItems = response.data.menuItems;
+                if (response.error) {
+                    console.log(response.error);
+                }
+            }, function (response) {
+                if (response.error) {
+                    console.log(response.error);
+                }
+            });
+
     })
 
     .controller('ContactController', function ($scope, $http) {
@@ -115,8 +136,8 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
  */
     .controller('GetPage', function ($scope, $rootScope, $http, $location, $window) {
 
-        $scope.$on('$viewContentLoaded', function(event) {
-            $window.ga('send', 'pageview', { page: $location.url() })
+        $scope.$on('$viewContentLoaded', function (event) {
+            $window.ga('send', 'pageview', {page: $location.url()});
         });
 
         /**
@@ -128,33 +149,57 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
                 $scope.page = data.page;
 
                 // Inject the title into the rootScope
-                $rootScope.title = data.page.title + ' - Sam Venn Photography';
+                $rootScope.title = data.page.title;
             })
             .error(function () {
-                window.alert("We have been unable to access the feed :-(");
+                console.log("We have been unable to access the feed :-(");
             })
 
     })
 
-    .controller('GetIndex', function ($scope, $rootScope, $http, $window, $location) {
+    .controller('GetIndex', function ($scope, $rootScope, $http, $window, $location, hotkeys) {
 
-        $scope.$on('$viewContentLoaded', function(event) {
-            $window.ga('send', 'pageview', { page: $location.url() })
+        $scope.$on('$viewContentLoaded', function (event) {
+            $window.ga('send', 'pageview', {page: $location.url()});
         });
 
-        $rootScope.title = "Sam Venn Photography";
+        $rootScope.title = themeSettings.siteTitle;
 
         $scope.defaultThumb = baseThemeURI + '/img/default-thumb.jpg';
+
+        $scope.siteTagLine = themeSettings.siteTagLine;
+
+        $scope.setWidth = function(post){
+            var height = $(window).width() > 992 ? themeSettings.carouselHeight[0] : themeSettings.carouselHeight[1];
+            width = (post.thumbnail_images.medium.width / post.thumbnail_images.medium.height) * height;
+            return { width: Math.round(width) + 'px' };
+        };
 
         $http.get('/api/get_posts/?category_name=featured&posts_per_page=12', {cache: true}).success(function (data) {
             $scope.posts = data;
         });
+
+        hotkeys.bindTo($scope)
+            .add({
+                combo: 'left',
+                description: 'Previous image',
+                callback: function() {
+                    $('.owl-carousel').trigger('prev.owl.carousel');
+                }
+            })
+            .add({
+                combo: 'right',
+                description: 'Next image',
+                callback: function() {
+                    $('.owl-carousel').trigger('next.owl.carousel');
+                }
+            });
     })
 
     .controller('GalleryList', function ($scope, $rootScope, $http, $routeParams, $location, hotkeys, $window) {
 
-        $scope.$on('$viewContentLoaded', function(event) {
-            $window.ga('send', 'pageview', { page: $location.url() })
+        $scope.$on('$viewContentLoaded', function (event) {
+            $window.ga('send', 'pageview', {page: $location.url()});
         });
 
         $scope.defaultThumb = baseThemeURI + '/img/default-thumb.jpg';
@@ -163,11 +208,16 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
             $location.path(view); // path not hash
         };
 
+        $scope.setWidth = function(post){
+            var height = $(window).width() > 992 ? themeSettings.carouselHeight[0] : themeSettings.carouselHeight[1];
+            width = (post.thumbnail_images.medium.width / post.thumbnail_images.medium.height) * height;
+            return { width: width + 'px' };
+        };
+
         /**
          *  Get posts from a specific category by passing in the slug
          */
-        var url = '/api/get_posts?posts_per_page=12';
-        $rootScope.title = 'Gallery - Sam Venn Photography';
+        var url = '/api/get_posts?posts_per_page=-1';
         /**
          *  Get the parameter passed into the controller (if it exists)
          *  and then construct the GET URL. If parameter exists, the user
@@ -187,7 +237,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
         $scope.page = 1;
         // Set a default next value
         $scope.next = 2;
-        $http.get(url)
+        $http.get(url, {cache: true})
             .success(function (data) {
                 /**
                  *  Pass data from the feed to the view.
@@ -206,16 +256,20 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
                 }
 
                 if ($routeParams.category) {
+                    $http.get('/api/get_category_posts/?slug=' + $routeParams.category, {cache: true}).success(function(data) {
+                        $rootScope.title = data.category.title;
+                    });
                     $scope.nextLink = '/gallery/category/' + $routeParams.category + '/page/' + $scope.next;
                     $scope.prevLink = '/gallery/category/' + $routeParams.category + '/page/' + $scope.prev;
                 }
                 else {
+                    $rootScope.title = 'Gallery';
                     $scope.nextLink = '/gallery/page/' + $scope.next;
                     $scope.prevLink = '/gallery/page/' + $scope.prev;
                 }
             })
             .error(function () {
-                window.alert("We have been unable to access the feed :-(");
+                console.log("We have been unable to access the feed :-(");
             });
 
         hotkeys.bindTo($scope)
@@ -228,32 +282,44 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
             })
             .add({
                 combo: 'left',
-                description: 'Navigate to previous page',
-                callback: function () {
-                    if ($scope.prevLink) {
-                        $scope.changeView($scope.prevLink);
-                    }
+                description: 'Previous image',
+                callback: function() {
+                    $('.owl-carousel').trigger('prev.owl.carousel');
                 }
             })
             .add({
                 combo: 'right',
-                description: 'Navigate to next page',
-                callback: function () {
-                    if ($scope.nextLink) {
-                        $scope.changeView($scope.nextLink);
-                    }
+                description: 'Next image',
+                callback: function() {
+                    $('.owl-carousel').trigger('next.owl.carousel');
                 }
             });
     })
 
     .controller('BlogPost', function ($scope, $rootScope, $http, $routeParams, $location, hotkeys, $window) {
 
-        $scope.$on('$viewContentLoaded', function(event) {
-            $window.ga('send', 'pageview', { page: $location.url() })
+        $scope.$on('$viewContentLoaded', function (event) {
+            $window.ga('send', 'pageview', {page: $location.url()});
         });
 
         $scope.changeView = function (view) {
             $location.path(view); // path not hash
+        };
+
+        $scope.escape = function () {
+            $scope.changeView('/gallery/category/' + $scope.category.slug);
+        };
+
+        $scope.previous = function () {
+            if ($scope.previous_slug) {
+                $scope.changeView('/gallery/' + $scope.previous_slug);
+            }
+        };
+
+        $scope.next = function () {
+            if ($scope.next_slug) {
+                $scope.changeView('/gallery/' + $scope.next_slug);
+            }
         };
 
         /**
@@ -264,36 +330,54 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
         if ($location.search().preview === 'true') {
             url += '&preview=true&preview_id=' + $location.search().preview_id + '&preview_nonce=' + $location.search().preview_nonce;
         }
+        var currentPost;
         $http.get(url, {cache: true})
             .success(function (data) {
                 $scope.post = data;
+                currentPost = data.post;
 
                 $scope.category = (data.post.categories[0].slug === 'featured') ? data.post.categories[1] : data.post.categories[0];
 
                 // Inject the title into the rootScope
-                $rootScope.title = data.post.title + ' - Sam Venn Photography';
+                $rootScope.title = data.post.title;
+
+                $http.get('/api/get_posts/?category_name=' + $scope.category.slug + '&posts_per_page=-1', {cache: true}).success(function (data) {
+                    var categoryPosts = data.posts;
+                    var currentIndex = arrayObjectIndexOf(categoryPosts, currentPost);
+                    if (currentIndex + 1 <= categoryPosts.length -1) {
+                        $scope.next_slug = categoryPosts[currentIndex + 1].slug;
+                    }
+                    if (currentIndex > 0) {
+                        $scope.previous_slug = categoryPosts[currentIndex - 1].slug;
+                    }
+                });
             })
             .error(function () {
-                window.alert("We have been unable to access the feed :-(");
+                console.log("We have been unable to access the feed :-(");
             });
 
+
+
         hotkeys.bindTo($scope)
+            .add({
+                combo: 'esc',
+                description: 'Navigate to the category listing',
+                callback: function () {
+                    $scope.escape();
+                }
+            })
             .add({
                 combo: 'left',
                 description: 'Navigate to the previous image',
                 callback: function () {
-                    if ($scope.post.previous_url) {
-                        $scope.changeView($scope.post.previous_url.substring($scope.post.previous_url.indexOf('/', 7)));
-                    }
+                    $scope.previous();
                 }
             })
             .add({
                 combo: 'right',
                 description: 'Navigate to the next image',
                 callback: function () {
-                    if ($scope.post.next_url) {
-                        $scope.changeView($scope.post.next_url.substring($scope.post.next_url.indexOf('/', 7)));
-                    }
+                    $scope.next();
                 }
             });
     })
@@ -307,7 +391,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
                 });
             })
             .error(function () {
-                window.alert("We have been unable to access the feed :-(");
+                console.log("We have been unable to access the feed :-(");
             });
 
 
@@ -316,4 +400,33 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
             return route === paths[paths.length - 2];
         }
 
+    })
+    .directive('sliderInitialise', function() {
+        return {
+            restrict: 'A',
+            transclude: false,
+            link: function(scope) {
+                if (scope.$last){
+                    initialiseSlider();
+                }
+            }
+        }
+    })
+    .directive('materialboxInitialise', function() {
+        return function(scope, element, attrs) {
+            initMaterialBox();
+        };
+    })
+    .directive("ngRandomClass", function () {
+        return {
+            restrict: 'EA',
+            replace: false,
+            scope: {
+                ngClasses: "=ngRandomClass"
+            },
+            link: function (scope, elem, attr) {
+                //Add random background class to selected element
+                elem.addClass(scope.ngClasses[Math.floor(Math.random() * (scope.ngClasses.length))]);
+            }
+        }
     });

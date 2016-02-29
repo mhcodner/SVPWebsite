@@ -1,27 +1,30 @@
+<div ng-hide="!title" class="container">
+    <h1><a class="black-text" ng-bind="title">Sam Venn Photography</a></h1>
+</div>
 <div class="container">
-    <h1 ng-bind="page.title" class="page-title"></h1>
-    <form ng-controller="ContactController" name="contactForm" ng-submit="submitForm(contactForm.$valid)" novalidate>
-        <fieldset ng-disabled="isSaving">
+    <div class="row">
+        <form ng-disabled="isSaving" ng-controller="ContactController" name="contactForm" ng-submit="submitForm(contactForm.$valid)" class="col s12" novalidate>
             <div class="row">
-                <div class="six columns">
+                <div class="input-field col s6">
                     <label for="email">Your email</label>
-                    <input ng-model="contact.email" class="u-full-width" placeholder="name@example.com" id="email" type="email" required>
-                    <p ng-show="contactForm.contact.email.$touched" class="help-block">A valid email is required.</p>
+                    <input ng-model="contact.email" id="email" type="email" class="validate" required>
                 </div>
-                <div class="six columns">
+                <div class="input-field col s6">
                     <label for="name">Your name</label>
-                    <input ng-model="contact.name" class="u-full-width" placeholder="John Smith" id="name" type="text" required>
-                    <p ng-show="contactForm.name.$touched" class="help-block">Your name is required.</p>
+                    <input ng-model="contact.name" class="u-full-width" id="name" class="validate" type="text" required>
                 </div>
             </div>
-            <label for="message">Message</label>
-            <textarea ng-model="contact.message" name="message" class="u-full-width" placeholder="Hi Sam …" id="message" required></textarea>
-            <p ng-show="contactForm.message.$invalid && contactForm.message.$touched" class="help-block">Your message is required.</p>
-            <input ng-disabled="contactForm.$invalid" class="button-primary" value="Submit" type="submit">
-        </fieldset>
-        <p>{{ contact.email }}</p>
-        <p>{{ contact.name }}</p>
-        <p>{{ contact.message }}</p>
-    </form>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="message">Message</label>
+                    <textarea ng-model="contact.message" name="message" class="materialize-textarea" id="message" required></textarea>
+                </div>
+            </div>
+            <button ng-disabled="contactForm.$invalid" class="waves-effect waves-light btn" type="submit">Submit
+                <i class="fa fa-paper-plane"></i>
+            </button>
+        </form>
+    </div>
     <div ng-bind-html="page.content"></div>
 </div>
