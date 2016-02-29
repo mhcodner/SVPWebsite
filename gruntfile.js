@@ -11,7 +11,8 @@ module.exports = function (grunt) {
                         'css/normalize.css',
                         'css/skeleton.css',
                         'css/loading-bar.css',
-                        'css/hotkeys.min.css'
+                        'css/hotkeys.min.css',
+                        'css/blueimp-gallery.min.css'
                     ]
                 }
             }
@@ -31,6 +32,7 @@ module.exports = function (grunt) {
                     'js/vendor/angular-resource.min.js',
                     'js/vendor/loading-bar.js',
                     'js/vendor/hotkeys.min.js',
+                    'js/vendor/jquery.blueimp-gallery.min.js',
                     'js/app.js',
                     'js/main.js'
                 ],
