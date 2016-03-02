@@ -1,8 +1,8 @@
 <div class="double-spacer"></div>
-<div class="owl-carousel owl-theme">
-    <div class="item" ng-repeat="post in posts.posts" ng-style="setWidth(post)" slider-initialise>
-        <img class="responsive-img" ng-src="{{ post.thumbnail_images.medium.url != '' && post.thumbnail_images.medium.url || defaultThumb }}" alt="{{ post.title }}"/>
-    </div>
+<div id="links">
+    <a ng-repeat="post in posts.posts" href="{{ post.thumbnail_images.medium.url != '' && post.thumbnail_images.medium.url || defaultThumb }}" data-gallery>
+        <img ng-src="{{ post.thumbnail_images.medium.url != '' && post.thumbnail_images.medium.url || defaultThumb }}" alt="{{ post.title }}">
+    </a>
 </div>
 <!-- The Gallery as lightbox dialog, should be a child element of the document body -->
 <div id="blueimp-gallery" class="blueimp-gallery">
