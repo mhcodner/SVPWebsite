@@ -1,16 +1,16 @@
 <div class="double-spacer"></div>
 <div id="links">
-    <a ng-repeat="post in posts.posts" href="{{ post.thumbnail_images.medium.url != '' && post.thumbnail_images.medium.url || defaultThumb }}" data-gallery>
+    <a ng-hide="!$first" ng-repeat="post in posts.posts" href="" onclick="initLightBox(event)" ng-href="{{ post.thumbnail_images.full.url != '' && post.thumbnail_images.full.url || defaultThumb }}">
         <img ng-src="{{ post.thumbnail_images.medium.url != '' && post.thumbnail_images.medium.url || defaultThumb }}" alt="{{ post.title }}">
     </a>
 </div>
 <!-- The Gallery as lightbox dialog, should be a child element of the document body -->
-<div id="blueimp-gallery" class="blueimp-gallery">
+<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
     <div class="slides"></div>
     <h3 class="title"></h3>
-    <a class="prev"></a>
-    <a class="next"></a>
-    <a class="close"></a>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
     <a class="play-pause"></a>
     <ol class="indicator"></ol>
 </div>

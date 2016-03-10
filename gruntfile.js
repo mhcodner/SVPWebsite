@@ -32,7 +32,7 @@ module.exports = function (grunt) {
                     'js/vendor/loading-bar.js',
                     'js/vendor/hotkeys.min.js',
                     'js/vendor/materialize.min.js',
-                    'js/vendor/jquery.blueimp-gallery.min.js',
+                    'js/vendor/blueimp-gallery.min.js',
                     'js/app.js',
                     'js/main.js'
                 ],

@@ -2159,7 +2159,6 @@
 }
 
 html {
-    font-family: sans-serif;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%
 }
@@ -7305,7 +7304,7 @@ a {
 
 html {
     line-height: 1.5;
-    font-family: 'Open Sans Condensed', sans-serif;
+    font-family: 'DIN-Light', sans-serif;
     font-weight: normal;
     color: rgba(0, 0, 0, 0.87)
 }
