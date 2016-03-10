@@ -110,3 +110,7 @@ img.post-image:not(.active) {
         padding-top: 5px;
     }
 }
+
+.social-icons i {
+    margin: 0 10px;
+}
