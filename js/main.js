@@ -1,5 +1,5 @@
 jQuery(document).ready(function ($) {
-    $('body').on('contextmenu', 'img, .post-image', function (e) {
+    $('body').on('contextmenu', 'img, .post-image', function () {
         return false;
     });
     $("body").on('click', 'ul.side-nav li a', function () {
@@ -13,6 +13,8 @@ function initMaterialBox() {
     $('.materialboxed').materialbox();
 }
 
+var gallery;
+
 function initLightBox(event) {
     event.preventDefault();
     event = event || window.event;
@@ -20,6 +22,19 @@ function initLightBox(event) {
     var link = target.src ? target.parentNode : target;
     var options = {index: link, urlProperty: 'href'};
     var links = event.target.parentNode.parentNode.getElementsByTagName('a');
-    console.log(links);
-    blueimp.Gallery(links, options);
+    gallery = blueimp.Gallery(links, options);
+}
+
+function initialiseSlider() {
+    gallery = blueimp.Gallery(
+        document.getElementById('links').getElementsByTagName('a'),
+        {
+            container: '#blueimp-gallery-carousel',
+            carousel: true
+        }
+    );
+}
+
+function gallerySlideTo(position) {
+    gallery.slide(position);
 }

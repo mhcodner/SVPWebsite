@@ -208,10 +208,8 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
             $location.path(view); // path not hash
         };
 
-        $scope.setWidth = function(post){
-            var height = $(window).width() > 992 ? themeSettings.carouselHeight[0] : themeSettings.carouselHeight[1];
-            width = (post.thumbnail_images.medium.width / post.thumbnail_images.medium.height) * height;
-            return { width: width + 'px' };
+        $scope.slideTo = function (index) {
+            gallerySlideTo(index);
         };
 
         /**
@@ -407,7 +405,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
             transclude: false,
             link: function(scope) {
                 if (scope.$last){
-                    initialiseSlider();
+                    setTimeout(initialiseSlider, 0);
                 }
             }
         }
