@@ -36,9 +36,11 @@ h1 {
 }
 
 ::-webkit-scrollbar { display: none; }
+
 html {
     -ms-overflow-style: none;
     overflow-y: scroll;
+    font-family: 'DIN-Light', sans-serif;
 }
 
 img {
@@ -97,6 +99,11 @@ img.post-image:not(.active) {
     position: absolute;
     bottom: 0;
     right: 0;
+}
+
+.top-nav li.active a {
+    border-bottom: 2px solid #444444;
+    height: 52px;
 }
 
 @media (max-width: 992px) {
