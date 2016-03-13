@@ -137,7 +137,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
     .controller('GetPage', function ($scope, $rootScope, $http, $location, $window) {
 
         $scope.$on('$viewContentLoaded', function (event) {
-            //$window.ga('send', 'pageview', {page: $location.url()});
+            $window.ga('send', 'pageview', {page: $location.url()});
         });
 
         /**
@@ -160,7 +160,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
     .controller('GetIndex', function ($scope, $rootScope, $http, $window, $location, hotkeys) {
 
         $scope.$on('$viewContentLoaded', function (event) {
-            //$window.ga('send', 'pageview', {page: $location.url()});
+            $window.ga('send', 'pageview', {page: $location.url()});
         });
 
         $rootScope.title = themeSettings.siteTitle;
@@ -199,7 +199,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
     .controller('GalleryList', function ($scope, $rootScope, $http, $routeParams, $location, hotkeys, $window) {
 
         $scope.$on('$viewContentLoaded', function (event) {
-            //$window.ga('send', 'pageview', {page: $location.url()});
+            $window.ga('send', 'pageview', {page: $location.url()});
         });
 
         $scope.defaultThumb = baseThemeURI + '/img/default-thumb.jpg';
@@ -297,7 +297,7 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
     .controller('BlogPost', function ($scope, $rootScope, $http, $routeParams, $location, hotkeys, $window) {
 
         $scope.$on('$viewContentLoaded', function (event) {
-            //$window.ga('send', 'pageview', {page: $location.url()});
+            $window.ga('send', 'pageview', {page: $location.url()});
         });
 
         $scope.changeView = function (view) {
