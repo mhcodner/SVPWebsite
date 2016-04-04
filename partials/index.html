@@ -1,12 +1,23 @@
 <div class="double-spacer"></div>
-<div class="container">
+<div class="container spacer">
     <div class="row">
         <div class="col s12 center-align">
-            <div id="links">
-                <a ng-hide="!$first" ng-repeat="post in posts.posts" href="" onclick="initLightBox(event)" ng-href="{{ post.thumbnail_images.full.url != '' && post.thumbnail_images.full.url || defaultThumb }}">
-                    <img class="responsive-img" ng-src="{{ post.thumbnail_images.thumbnail.url != '' && post.thumbnail_images.thumbnail.url || defaultThumb }}" alt="{{ post.title }}">
-                </a>
+            <!-- The Gallery as inline carousel, can be positioned anywhere on the page -->
+            <div id="blueimp-gallery-carousel" class="blueimp-gallery blueimp-gallery-carousel">
+                <div class="slides"></div>
+                <h3 class="title"></h3>
+                <a class="prev">‹</a>
+                <a class="next">›</a>
+                <a class="play-pause"></a>
+                <ol class="indicator"></ol>
             </div>
+        </div>
+    </div>
+    <div class="row" id="links" style="display: none;">
+        <div ng-repeat="post in posts.posts" class="col l2 m3 s6" slider-initialise>
+            <a href="{{ post.thumbnail_images.full.url != '' && post.thumbnail_images.full.url || defaultThumb }}">
+                <img class="responsive-img" ng-src="{{ post.thumbnail_images.medium.url != '' && post.thumbnail_images.medium.url || defaultThumb }}" alt="{{ post.title }}">
+            </a>
         </div>
     </div>
 </div>
