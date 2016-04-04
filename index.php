@@ -47,10 +47,10 @@
         <div class="container">
             <span class="grey-text darken-3">&copy; <?php echo date("Y"); ?> Sam Venn Photography</span>
             <div class="right social-icons" style="padding-top: 5px;">
-                <a class="grey-text darken-3" href="https://www.facebook.com/pages/Sam-Venn-Photography/311302692214440">
+                <a class="grey-text darken-3" target="_blank" href="https://www.facebook.com/pages/Sam-Venn-Photography/311302692214440">
                     <i class="fa fa-2x fa-facebook-square"></i>
                 </a>
-                <a class="grey-text darken-3" href="https://instagram.com/samvennphotography/">
+                <a class="grey-text darken-3" target="_blank" href="https://instagram.com/samvennphotography/">
                     <i class="fa fa-2x fa-instagram"></i>
                 </a>
             </div>

@@ -26,10 +26,15 @@ function initLightBox(event) {
 }
 
 function initialiseSlider() {
+    var path = window.location.pathname;
+    var container = '#blueimp-gallery-carousel';
+    if (path === '/') {
+        container = '#blueimp-gallery-carousel-home';
+    }
     gallery = blueimp.Gallery(
         document.getElementById('links').getElementsByTagName('a'),
         {
-            container: '#blueimp-gallery-carousel',
+            container: container,
             carousel: true
         }
     );
