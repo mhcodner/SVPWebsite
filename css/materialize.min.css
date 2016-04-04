@@ -2656,7 +2656,6 @@ ul.staggered-list li {
 }
 
 footer.page-footer {
-    margin-top: 20px;
     padding-top: 20px;
     background-color: #ee6e73
 }
@@ -7288,7 +7287,6 @@ nav .input-field label.active {
 
 @media only screen and (min-width: 601px) {
     nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
-        margin-top: 12px;
         line-height: 64px
     }
 
