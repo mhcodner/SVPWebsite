@@ -23,7 +23,7 @@ if (!function_exists('samvennphoto_setup')) :
          * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
          */
         add_theme_support('post-thumbnails');
-        set_post_thumbnail_size(800, 600, true);
+        set_post_thumbnail_size(900, 675, true);
         add_theme_support( 'html5', array( 'gallery', 'caption' ) );
         $GLOBALS['content_width'] = 1100;
 
