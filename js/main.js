@@ -35,7 +35,8 @@ function initialiseSlider() {
         document.getElementById('links').getElementsByTagName('a'),
         {
             container: container,
-            carousel: true
+            carousel: true,
+            enableKeyboardNavigation: true
         }
     );
 }
