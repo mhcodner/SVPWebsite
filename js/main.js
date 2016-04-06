@@ -31,6 +31,10 @@ function initialiseSlider() {
     if (path === '/') {
         container = '#blueimp-gallery-carousel-home';
     }
+    else if (path !== '/gallery/') {
+        var category = path.split('/')[3];
+        container = '#blueimp-gallery-carousel' + category;
+    }
     gallery = blueimp.Gallery(
         document.getElementById('links').getElementsByTagName('a'),
         {

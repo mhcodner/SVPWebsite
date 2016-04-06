@@ -212,6 +212,8 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
             gallerySlideTo(index);
         };
 
+        $scope.category = $routeParams.category;
+
         /**
          *  Get posts from a specific category by passing in the slug
          */
