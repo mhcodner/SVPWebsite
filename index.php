@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <title ng-bind="title">Sam Venn Photography</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="google-site-verification" content="jwb6PmuAmmIxyP63kR2JPP3xWMAQHK554hL80vX3sMg" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <?php wp_head(); ?>

@@ -45,6 +45,7 @@ function makePage($data)
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <title><?php echo $pageTitle; ?></title>
+        <meta name="google-site-verification" content="jwb6PmuAmmIxyP63kR2JPP3xWMAQHK554hL80vX3sMg" />
         <meta property="description" content="<?php echo $metaDescription; ?>"/>
 
         <!-- Twitter summary card metadata -->
