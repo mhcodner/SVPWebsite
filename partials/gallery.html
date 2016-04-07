@@ -13,7 +13,7 @@
             </div>
         </div>
     </div>
-    <div class="row" id="links">
+    <div class="row" id="{{ 'links' + category }}">
         <div ng-repeat="post in posts" class="col l2 m3 s6" slider-initialise>
             <a ng-click="slideTo($index); $event.preventDefault()" href="{{ post.thumbnail_images.full.url != '' && post.thumbnail_images.full.url || defaultThumb }}">
                 <img class="responsive-img" ng-src="{{ post.thumbnail_images.medium.url != '' && post.thumbnail_images.medium.url || defaultThumb }}" alt="{{ post.title }}">
