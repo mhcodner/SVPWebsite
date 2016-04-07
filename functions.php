@@ -64,7 +64,7 @@ RewriteEngine On
 # allow social media crawlers to work by redirecting them to a server-rendered static version on the page
 RewriteCond %{REQUEST_URI} !^/wp-content/
 RewriteCond %{QUERY_STRING} !^json=1$
-RewriteCond %{HTTP_USER_AGENT} (facebookexternalhit/[0-9]|Twitterbot|Pinterest|Google.*snippet|Googlebot|redditbot|bingbot)
+RewriteCond %{HTTP_USER_AGENT} (facebookexternalhit/[0-9]|Twitterbot|Pinterest|Google.*snippet|redditbot|bingbot)
 RewriteRule ^(.*)$ /wp-content/themes/SVPWebsite/static-page.php?slug=$1 [L]
 RewriteBase /
 RewriteRule ^index\.php$ - [L]
