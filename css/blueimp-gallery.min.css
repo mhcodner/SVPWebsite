@@ -21,8 +21,7 @@
     position: fixed;
     z-index: 999999;
     overflow: hidden;
-    background: #000;
-    background: rgba(0, 0, 0, .9);
+    background: transparent;
     opacity: 0;
     display: none;
     direction: ltr;
@@ -35,7 +34,6 @@
     z-index: auto;
     margin: 1em auto;
     padding-bottom: 66.67%;
-    box-shadow: 0 0 10px #000;
     -ms-touch-action: pan-y;
     touch-action: pan-y
 }
