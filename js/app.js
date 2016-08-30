@@ -63,12 +63,6 @@ var MyApp = angular.module('MyApp', ['ngRoute', 'ngAnimate', 'ngResource', 'ngSa
         cfpLoadingBarProvider.includeSpinner = false;
     }])
 
-/**
- *
- *    On runtime define the page titles for injecting into the page <title> tag
- *
- */
-
     .controller('404', function ($rootScope) {
         $rootScope.title = '404 - Page not found';
     })
